@@ -7,16 +7,11 @@
   imports =
     [
       ./wayland/home.nix
-      ../../../modules/virtualisation/home.nix
-      ../../../modules/scripts
-      ../../../modules/shell
-      ../../../modules/editors
-      # ../../../modules/programs/wayland
-      # ../../../modules/theme/catppuccin-dark/wayland
-      # ../../../modules/theme/catppuccin-light/wayland
-      ../../../modules/theme/nord/wayland
-      ../../../modules/devlop
-    ];
+      ../../modules/virtualisation/home.nix
+      ../../modules/scripts
+      ../../modules/shell/zsh/default.nix
+    ] ++ (import ../../modules/editors)
+    ++ (import ../../modules/devlop);
 
   home = {
     username = "${user}";

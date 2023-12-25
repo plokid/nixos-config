@@ -6,12 +6,12 @@
 , ...
 }: {
   imports =
-    (import ../../../modules/hardware)
-    ++ (import ../../../modules/virtualisation)
+    (import ../../modules/hardware)
+    ++ (import ../../modules/virtualisation)
     ++ [
-      ../hardware-configuration.nix
-      ../../../modules/fonts
-      ./../../modules/fcitx5
+      ./hardware-configuration.nix
+      ../../modules/fonts
+      ../../modules/fcitx5
     ]
     ++ [
       ./wayland
@@ -31,17 +31,17 @@
     extraGroups = [ "wheel" "docker" "libvirtd" "video" "audio" ];
     packages =
       (with pkgs; [
-        tdesktop
-        qq
-        feishu
+        #    tdesktop
+        #    qq
+        #    feishu
         thunderbird
-        blender
-        dbeaver
-        aichat
+        #    blender
+        #    dbeaver
+        #    aichat
       ])
       ++ (with config.nur.repos; [
         # linyinfeng.icalingua-plus-plus
-        linyinfeng.wemeet
+        #    linyinfeng.wemeet
       ]);
   };
   boot = {
@@ -130,10 +130,10 @@
       pulsemixer
       linux-firmware
       sshpass
-      pkgs.rust-bin.stable.latest.default
+      #  pkgs.rust-bin.stable.latest.default
       lxappearance
       imagemagick
-      flameshot
+      #  flameshot
     ];
   };
 
