@@ -1,12 +1,16 @@
-{ config, pkgs, lib, inputs, user, ... }:
-
-{
+{ config
+, pkgs
+, lib
+, inputs
+, user
+, ...
+}: {
   nixpkgs.system = "x86_64-linux";
 
   nixpkgs.config.allowUnfree = true;
 
   networking = {
-    hostName = "RuiXi"; # Define your hostname.
+    hostName = "nixos"; # Define your hostname.
     networkmanager.enable = true;
     hosts = {
       "185.199.109.133" = [ "raw.githubusercontent.com" ];
@@ -61,10 +65,12 @@
 
   nix = {
     settings = {
-      # substituters = [
-      #   "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-      #   "https://cache.nixos.org/"
-      # ];
+      substituters = [
+        "https://mirrors.ustc.edu.cn/nix-channels/store"
+        "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+        "https://mirror.sjtu.edu.cn/nix-channels/store"
+        "https://cache.nixos.org/"
+      ];
       auto-optimise-store = true; # Optimise syslinks
     };
     gc = {
@@ -86,6 +92,6 @@
       enable = false;
       channel = "https://nixos.org/channels/nixos-unstable";
     };
-    stateVersion = "22.11";
+    stateVersion = "23.11";
   };
 }
