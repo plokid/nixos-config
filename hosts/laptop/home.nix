@@ -2,14 +2,11 @@
 , lib
 , pkgs
 , user
-, impermanence
 , ...
 }: {
   imports =
     [
-      # ../../../modules/desktop/sway/home.nix
-      # ../../../modules/desktop/hyprland/home.nix
-      ../../../modules/desktop/plasma5/home.nix
+      ./wayland/home.nix
       ../../../modules/virtualisation/home.nix
       ../../../modules/scripts
       ../../../modules/shell
@@ -20,6 +17,7 @@
       ../../../modules/theme/nord/wayland
       ../../../modules/devlop
     ];
+
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
