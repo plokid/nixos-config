@@ -1,10 +1,9 @@
-{
-  config,
-  pkgs,
-  user,
-  inputs,
-  lib,
-  ...
+{ config
+, pkgs
+, user
+, inputs
+, lib
+, ...
 }: {
   imports = [
     # ../../../modules/desktop/sway

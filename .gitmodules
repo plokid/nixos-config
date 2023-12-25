@@ -1,6 +1,3 @@
-[submodule "blog"]
-	path = blog
-	url = git@github.com:Ruixi-rebirth/Ruixi-rebirth.git
 [submodule "modules/fcitx5/rime-data-flypy"]
 	path = modules/fcitx5/rime-data-flypy
 	url = https://github.com/boomker/rime-fast-xhup.git

@@ -1,8 +1,7 @@
-{
-  pkgs,
-  config,
-  lib,
-  # catppuccin-fcitx5,
+{ pkgs
+, config
+, lib
+, # catppuccin-fcitx5,
   ...
 }: {
   # home.file.".config/fcitx5/profile".source = ./profile;

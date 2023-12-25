@@ -2,5 +2,5 @@
 require("config.lazy")
 
 if vim.g.neovide then
-  vim.o.guifont = "Fira Code:h18"
+	vim.o.guifont = "Fira Code:h18"
 end

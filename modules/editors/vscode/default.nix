@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions;
@@ -88,84 +88,84 @@
       "vim.normalModeKeyBindingsNonRecursive" = [
         {
           # toggle easy motion, but two word
-          "before" = ["s"];
-          "after" = ["leader" "leader" "2" "s"];
+          "before" = [ "s" ];
+          "after" = [ "leader" "leader" "2" "s" ];
         }
         {
           # toggle easy motion
-          "before" = ["f"];
-          "after" = ["leader" "leader" "s"];
+          "before" = [ "f" ];
+          "after" = [ "leader" "leader" "s" ];
         }
         {
           # get info
-          "before" = ["leader" "i"];
-          "commands" = ["editor.action.showHover"];
+          "before" = [ "leader" "i" ];
+          "commands" = [ "editor.action.showHover" ];
         }
         {
           # old vim `gi` command
-          "before" = ["leader" "g" "i"];
-          "after" = ["g" "i"];
+          "before" = [ "leader" "g" "i" ];
+          "after" = [ "g" "i" ];
         }
         {
           # goto implementation
-          "before" = ["g" "i"];
-          "commands" = ["editor.action.peekImplementation"];
+          "before" = [ "g" "i" ];
+          "commands" = [ "editor.action.peekImplementation" ];
         }
         {
           # goto error
-          "before" = ["g" "e"];
-          "commands" = ["editor.action.marker.nextInFiles"];
+          "before" = [ "g" "e" ];
+          "commands" = [ "editor.action.marker.nextInFiles" ];
         }
         {
           # goto word
-          "before" = ["g" "w"];
-          "after" = ["y" "i" "w" "/" "<C-v>" "<CR>"];
+          "before" = [ "g" "w" ];
+          "after" = [ "y" "i" "w" "/" "<C-v>" "<CR>" ];
         }
         {
           # git status/source
-          "before" = ["leader" "g" "s"];
-          "commands" = ["extension.vim_escape" "workbench.view.scm"];
+          "before" = [ "leader" "g" "s" ];
+          "commands" = [ "extension.vim_escape" "workbench.view.scm" ];
           "silent" = true;
         }
         {
           # git log
-          "before" = ["leader" "g" "l"];
-          "commands" = ["git-graph.view"];
+          "before" = [ "leader" "g" "l" ];
+          "commands" = [ "git-graph.view" ];
         }
         {
           # git checkout
-          "before" = ["leader" "g" "c"];
-          "commands" = ["gitlens.gitCommands.switch"];
+          "before" = [ "leader" "g" "c" ];
+          "commands" = [ "gitlens.gitCommands.switch" ];
         }
         {
           # yank path (default relative)
-          "before" = ["leader" "y" "p"];
-          "commands" = ["copy-relative-path-and-line-numbers.both"];
+          "before" = [ "leader" "y" "p" ];
+          "commands" = [ "copy-relative-path-and-line-numbers.both" ];
         }
         {
           # new J
-          "before" = ["J"];
-          "after" = ["5" "j"];
+          "before" = [ "J" ];
+          "after" = [ "5" "j" ];
         }
         {
           # new K
-          "before" = ["K"];
-          "after" = ["5" "k"];
+          "before" = [ "K" ];
+          "after" = [ "5" "k" ];
         }
         {
           # new H
-          "before" = ["H"];
-          "after" = ["5" "h"];
+          "before" = [ "H" ];
+          "after" = [ "5" "h" ];
         }
         {
           # new L
-          "before" = ["L"];
-          "after" = ["5" "l"];
+          "before" = [ "L" ];
+          "after" = [ "5" "l" ];
         }
         {
           # toggle Sidebar
-          "before" = ["leader" "e"];
-          "after" = ["workbench.action.toggleSidebarVisibility"];
+          "before" = [ "leader" "e" ];
+          "after" = [ "workbench.action.toggleSidebarVisibility" ];
         }
       ];
     };
