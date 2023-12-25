@@ -2,13 +2,13 @@
   pkgs,
   config,
   lib,
-  catppuccin-fcitx5,
+  # catppuccin-fcitx5,
   ...
 }: {
   # home.file.".config/fcitx5/profile".source = ./profile;
 
   # color schema
-  home.file.".local/share/fcitx5/themes".source = "${catppuccin-fcitx5}/src";
+  # home.file.".local/share/fcitx5/themes".source = "${catppuccin-fcitx5}/src";
   # home.file.".local/share/fcitx5/rime".source = ./rime-data-flypy;
   # home.file.".config/fcitx5/conf/classicui.conf".source = ./classicui.conf;
 
