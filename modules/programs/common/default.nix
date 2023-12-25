@@ -14,4 +14,6 @@
   ./youtube-tui
   ./aliyun-cli
   ./emanote
+  ./steam
+  ./clash-verge
 ]
