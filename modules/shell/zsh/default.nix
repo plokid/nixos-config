@@ -90,7 +90,6 @@ in
   home.packages = with pkgs; [
     procs
     ripgrep
-    eza
     du-dust
     bat
     yt-dlp

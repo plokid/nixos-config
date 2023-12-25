@@ -1,5 +1,5 @@
 ''
   function ll 
-      exa -l --icons $argv
+      eza -l --icons $argv
   end
 ''
