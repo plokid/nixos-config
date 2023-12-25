@@ -1,80 +1,41 @@
 return {
-	"numToStr/Comment.nvim",
-	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
-	event = "BufReadPost",
-	config = function()
-		require("Comment").setup({
-			pre_hook = function(ctx)
-				local U = require("Comment.utils")
+  "echasnovski/mini.comment",
+  event = "VeryLazy",
+  opts = {
+    -- Options which control module behavior
+    options = {
+      -- Function to compute custom 'commentstring' (optional)
+      custom_commentstring = nil,
 
-				local location = nil
-				if ctx.ctype == U.ctype.block then
-					location = require("ts_context_commentstring.utils").get_cursor_location()
-				elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-					location = require("ts_context_commentstring.utils").get_visual_start_location()
-				end
+      -- Whether to ignore blank lines
+      ignore_blank_line = false,
 
-				return require("ts_context_commentstring.internal").calculate_commentstring({
-					key = ctx.ctype == U.ctype.line and "__default" or "__multiline",
-					location = location,
-				})
-			end,
-			padding = true,
+      -- Whether to recognize as comment only lines without indent
+      start_of_line = false,
 
-			---Whether the cursor should stay at its position
-			---NOTE: This only affects NORMAL mode mappings and doesn't work with dot-repeat
-			---@type boolean
-			sticky = true,
+      -- Whether to ensure single space pad for comment parts
+      pad_comment_parts = true,
+    },
 
-			---Lines to be ignored while comment/uncomment.
-			---Could be a regex string or a function that returns a regex string.
-			---Example: Use '^$' to ignore empty lines
-			---@type string|fun():string
-			ignore = nil,
+    -- Module mappings. Use `''` (empty string) to disable one.
+    mappings = {
+      -- Toggle comment (like `gcip` - comment inner paragraph) for both
+      -- Normal and Visual modes
+      comment = "<leader>/",
 
-			---LHS of toggle mappings in NORMAL + VISUAL mode
-			---@type table
-			toggler = {
-				---Line-comment toggle keymap
-				line = "gcc",
-				---Block-comment toggle keymap
-				block = "gbc",
-			},
+      -- Toggle comment on current line
+      comment_line = "<leader>//",
 
-			---LHS of operator-pending mappings in NORMAL + VISUAL mode
-			---@type table
-			opleader = {
-				---Line-comment keymap
-				line = "gc",
-				---Block-comment keymap
-				block = "gb",
-			},
+      -- Define 'comment' textobject (like `dgc` - delete whole comment block)
+      textobject = "gc",
+    },
 
-			---LHS of extra mappings
-			---@type table
-			extra = {
-				---Add comment on the line above
-				above = "gcO",
-				---Add comment on the line below
-				below = "gco",
-				---Add comment at the end of line
-				eol = "gcA",
-			},
-
-			---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
-			---@type table
-			mappings = {
-				---Operator-pending mapping
-				---Includes `gcc`, `gbc`, `gc[count]{motion}` and `gb[count]{motion}`
-				---NOTE: These mappings can be changed individually by `opleader` and `toggler` config
-				basic = true,
-				---Extra mapping
-				---Includes `gco`, `gcO`, `gcA`
-				extra = true,
-				---Extended mapping
-				---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
-				extended = false,
-			},
-		})
-	end,
+    -- Hook functions to be executed at certain stage of commenting
+    hooks = {
+      -- Before successful commenting. Does nothing by default.
+      pre = function() end,
+      -- After successful commenting. Does nothing by default.
+      post = function() end,
+    },
+  },
 }
