@@ -12,45 +12,48 @@
       ./hardware-configuration.nix
       ../../modules/fonts
       ../../modules/fcitx5
-    ]
-    ++ [
       ./wayland
       #  ./x11
+      ../../modules/programs/common/clash-verge
+      ../../modules/programs/common/steam
     ];
 
   sops.defaultSopsFile = ../../../secrets/secrets.yaml;
   users.mutableUsers = false;
   users.users.root = {
-    initialHashedPassword = "$6$4lwj3AGq8M9CQE2.$q8cNPghWHTl/dfE0dMPm2vsh0cMpY2gWxw91/Uadi8jShbvUHJJu3Jg0CvSpqrlEB7a3kvWDf/p2CI3mSqP1c/";
+    initialHashedPassword = "$6$WOHLNBh8OsXbdI06$/SN8FhpqLKqtpvIhlbEPi9dLH8e83Sm0.ToA1.GJHUVRlLtGQC82.zETE/tQB22V5Nep0BAxGlvnvFmX7MeA.1";
   };
   programs.zsh.enable = true;
   users.users.${user} = {
-    initialHashedPassword = "$6$4lwj3AGq8M9CQE2.$q8cNPghWHTl/dfE0dMPm2vsh0cMpY2gWxw91/Uadi8jShbvUHJJu3Jg0CvSpqrlEB7a3kvWDf/p2CI3mSqP1c/";
+    initialHashedPassword = "$6$A1FK3uWo2Be1aWis$4GArVj7tl7yGINX2JOOI/J18s.qVGhS.3fIPwgenbM8i7y4jVb.k/3P2Jxu1BnMTUh.FGtNwxfXQmlm2VTWqc0";
     shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "libvirtd" "video" "audio" ];
     packages =
       (with pkgs; [
         #    tdesktop
-        #    qq
+        qq
         #    feishu
         thunderbird
-        #    blender
+        blender
         #    dbeaver
-        #    aichat
+        # aichat
+        zotero
+        wpsoffice-cn
       ])
       ++ (with config.nur.repos; [
         # linyinfeng.icalingua-plus-plus
-        #    linyinfeng.wemeet
+        linyinfeng.wemeet
       ]);
   };
   boot = {
     supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    bootspec.enable = true;
+    #bootspec.enable = true;
     loader = {
-      systemd-boot = (lib.mkIf config.boot.lanzaboote.enable) {
-        enable = lib.mkForce false; #lanzaboote
+      systemd-boot = {
+        #enable = lib.mkForce false; #lanzaboote
+        enable = true;
         consoleMode = "auto";
       };
       efi = {
@@ -59,10 +62,10 @@
       };
       timeout = 3;
     };
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
-    };
+    #lanzaboote = {
+    #  enable = true;
+    #  pkiBundle = "/etc/secureboot";
+    #};
     kernelParams = [
       "quiet"
       "splash"
@@ -77,10 +80,9 @@
       directories = [
         "/etc/nixos" # bind mounted from /nix/persist/etc/nixos to /etc/nixos
         "/etc/NetworkManager/system-connections"
-        "/etc/v2raya"
-        "/etc/secureboot"
-        "/var/log"
-        "/var/lib"
+        #  "/etc/v2raya"
+        #  "/etc/secureboot"
+        "/var"
       ];
       files = [
         "/etc/machine-id"
@@ -92,16 +94,20 @@
           "Pictures"
           "Documents"
           "Videos"
-          ".cache"
+          "Templates"
+          "nixos-config"
+          "VMs"
+          "Program"
           "Zotero"
-          ".npm-global"
+          "Games"
+          "Desktop"
+          ".cache"
           ".config"
           ".thunderbird"
-          "nix-config"
-          "VMs"
-          "Programs"
-          ".cabal"
           ".cargo"
+          ".local"
+          ".mozilla"
+          ".zotero"
           {
             directory = ".gnupg";
             mode = "0700";
@@ -110,12 +116,6 @@
             directory = ".ssh";
             mode = "0700";
           }
-          ".local"
-          ".mozilla"
-          ".emacs.d"
-        ];
-        files = [
-          ".npmrc"
         ];
       };
     };
@@ -133,8 +133,9 @@
       #  pkgs.rust-bin.stable.latest.default
       lxappearance
       imagemagick
-      #  flameshot
+      flameshot
     ];
+    variables.NIX_REMOTE = "daemon";
   };
 
   services.xserver = {
@@ -175,9 +176,19 @@
       };
     };
   };
+
+  systemd.services.nix-daemon = {
+    environment = {
+      TMPDIR = "/var/cache/nix";
+    };
+    serviceConfig = {
+      CacheDirectory = "nix";
+    };
+  };
+
   security.polkit.enable = true;
   security.sudo = {
-    enable = false;
+    enable = true;
     extraConfig = ''
       ${user} ALL=(ALL) NOPASSWD:ALL
     '';

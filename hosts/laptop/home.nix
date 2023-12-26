@@ -9,7 +9,7 @@
       ./wayland/home.nix
       ../../modules/virtualisation/home.nix
       ../../modules/scripts
-      ../../modules/shell/zsh/default.nix
+      ../../modules/shell/zsh
     ] ++ (import ../../modules/editors)
     ++ (import ../../modules/devlop);
 
