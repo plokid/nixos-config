@@ -9,13 +9,13 @@
     (import ../../modules/hardware)
     ++ (import ../../modules/virtualisation)
     ++ [
-      ./hardware-configuration.nix
       ../../modules/fonts
-      ../../modules/fcitx5
+      ./hardware-configuration.nix
       ./wayland
       #  ./x11
-      ../../modules/programs/common/clash-verge
-      ../../modules/programs/common/steam
+    ] ++ [
+      ../../modules/fcitx5
+      ../../modules/programs/system
     ];
 
   sops.defaultSopsFile = ../../../secrets/secrets.yaml;
