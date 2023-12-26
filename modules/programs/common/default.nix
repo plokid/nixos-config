@@ -10,4 +10,6 @@
   ./kitty
   ./joshuto
   ./password-store
+  ./git
+  ./motrix
 ]
