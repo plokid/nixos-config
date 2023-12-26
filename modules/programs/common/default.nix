@@ -8,4 +8,6 @@
   ./yt-dlp
   ./zathura
   ./kitty
+  ./joshuto
+  ./password-store
 ]
