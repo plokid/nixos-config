@@ -12,7 +12,8 @@
       ../../modules/shell/zsh
       # ../../modules/programs/common
     ] ++ (import ../../modules/editors)
-    ++ (import ../../modules/programs/common);
+    ++ (import ../../modules/programs/common)
+    ++ (import ../../modules/devlop);
 
   home = {
     username = "${user}";
