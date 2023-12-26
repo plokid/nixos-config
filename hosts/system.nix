@@ -31,7 +31,7 @@
   };
   environment = {
     binsh = "${pkgs.dash}/bin/dash";
-    shells = with pkgs; [ fish ];
+    shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
       git
       neovim
@@ -76,7 +76,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 2d";
+      options = "--delete-older-than 7d";
     };
     package = pkgs.nixVersions.unstable;
     registry.nixpkgs.flake = inputs.nixpkgs;
