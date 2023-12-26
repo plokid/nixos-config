@@ -1,8 +1,6 @@
 {
   description = "My Personal NixOS Configuration";
 
-  nixConfig = { };
-
   outputs =
     inputs @ { self
     , nixpkgs
@@ -159,11 +157,11 @@
     mission-control.url = "github:Platonic-Systems/mission-control";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
-    lanzaboote = {
-      #please read this doc -> https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
-      url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #lanzaboote = {
+    #please read this doc -> https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
+    #  url = "github:nix-community/lanzaboote";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
     disko.url = "github:nix-community/disko";
     emanote.url = "github:srid/emanote";
     joshuto.url = "github:kamiyaa/joshuto";
@@ -178,5 +176,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+  };
+
+  nixConfig = {
+    # override the default substituters
+    substituters = [
+      # cache mirror located in China
+      # status: https://mirrors.ustc.edu.cn/status/
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      # status: https://mirror.sjtu.edu.cn/
+      "https://mirror.sjtu.edu.cn/nix-channels/store"
+
+      "https://cache.nixos.org"
+    ];
   };
 }
