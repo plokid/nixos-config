@@ -41,7 +41,7 @@ in
             users.${user} = {
               imports =
                 [
-                  (import ./laptop/home.nix)
+                  ./laptop/home.nix
                 ]
                 ++ [
                   inputs.hyprland.homeManagerModules.default

@@ -8,6 +8,7 @@
   imports =
     (import ../../modules/hardware)
     ++ (import ../../modules/virtualisation)
+    ++ (import ../../modules/programs/system)
     ++ [
       ../../modules/fonts
       ./hardware-configuration.nix
@@ -15,7 +16,6 @@
       #  ./x11
     ] ++ [
       ../../modules/fcitx5
-      ../../modules/programs/system
     ];
 
   sops.defaultSopsFile = ../../../secrets/secrets.yaml;

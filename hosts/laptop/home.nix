@@ -10,8 +10,9 @@
       ../../modules/virtualisation/home.nix
       ../../modules/scripts
       ../../modules/shell/zsh
-      ../../modules/programs/common
-    ] ++ (import ../../modules/editors);
+      # ../../modules/programs/common
+    ] ++ (import ../../modules/editors)
+    ++ (import ../../modules/programs/common);
 
   home = {
     username = "${user}";
