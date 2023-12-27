@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home.package = with pkgs; [
+  home.packages = with pkgs; [
     python3
     poetry
   ];
