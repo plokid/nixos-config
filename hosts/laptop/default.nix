@@ -40,10 +40,13 @@
         # aichat
         zotero
         wpsoffice-cn
+        microsoft-edge
+        hmcl
       ])
       ++ (with config.nur.repos; [
         # linyinfeng.icalingua-plus-plus
         linyinfeng.wemeet
+        rewine.ttf-wps-fonts
       ]);
   };
   boot = {
