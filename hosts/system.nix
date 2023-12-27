@@ -23,12 +23,8 @@
 
   i18n.defaultLocale = "zh_CN.UTF-8";
 
-  security.rtkit.enable = true;
-  services = {
-    openssh = {
-      enable = true;
-    };
-  };
+  # security.rtkit.enable = true;
+  networking.firewall.enable = false;
   environment = {
     binsh = "${pkgs.dash}/bin/dash";
     shells = with pkgs; [ zsh ];
