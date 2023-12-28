@@ -21,6 +21,7 @@
         redhat.vscode-yaml
         yzhang.markdown-all-in-one
         rust-lang.rust-analyzer
+        james-yu.latex-workshop
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
