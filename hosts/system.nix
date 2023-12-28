@@ -54,6 +54,7 @@
       rar
       frp
       sops
+      efibootmgr
     ];
   };
   services.dbus.enable = true;
