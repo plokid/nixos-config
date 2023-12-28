@@ -31,7 +31,7 @@
     extraGroups = [ "wheel" "docker" "libvirtd" "video" "audio" ];
     packages =
       (with pkgs; [
-        #    tdesktop
+        tdesktop
         qq
         #    feishu
         thunderbird
@@ -47,11 +47,14 @@
         # linyinfeng.icalingua-plus-plus
         linyinfeng.wemeet
         rewine.ttf-wps-fonts
+        xddxdd.qqmusic
+        xddxdd.bilibili
+        YisuiMilena.hmcl-bin
       ]);
   };
   boot = {
     supportedFilesystems = [ "ntfs" ];
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     #bootspec.enable = true;
     loader = {
       systemd-boot = {
@@ -111,6 +114,8 @@
           ".local"
           ".mozilla"
           ".zotero"
+          ".vscode"
+          ".minecraft"
           {
             directory = ".gnupg";
             mode = "0700";
@@ -119,6 +124,10 @@
             directory = ".ssh";
             mode = "0700";
           }
+        ];
+        files = [
+          ".hmcl.json"
+          ".zsh_history"
         ];
       };
     };
@@ -137,6 +146,7 @@
       lxappearance
       imagemagick
       flameshot
+      nmap
     ];
     variables.NIX_REMOTE = "daemon";
   };
