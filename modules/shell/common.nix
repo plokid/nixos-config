@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   eza_params = "--git --icons --group --group-directories-first --time-style=long-iso --color-scale=all";
@@ -6,6 +6,7 @@ in
 {
   programs = {
     eza.enable = true;
+    fzf.enable = true;
     dircolors = {
       enable = true;
       enableZshIntegration = true;
@@ -22,7 +23,7 @@ in
     };
   };
 
-  shellAliases = with lib;
+  home.shellAliases = with lib;
     with pkgs; {
       ytmp3 = ''
         ${getExe yt-dlp} -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"'';
@@ -67,6 +68,7 @@ in
 
   home.packages = with pkgs; [
     procs
+    fd
     ripgrep
     du-dust
     bat
