@@ -6,5 +6,4 @@ in
   ./notice
   ./picom
   ./sxhkd
-  ./mpv
 ] ++ common

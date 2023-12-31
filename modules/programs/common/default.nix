@@ -12,4 +12,5 @@
   ./password-store
   ./git
   ./motrix
+  ./mpv
 ]
