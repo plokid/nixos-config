@@ -55,6 +55,8 @@
       frp
       sops
       efibootmgr
+      gnumake
+      direnv
     ];
   };
   services.dbus.enable = true;
