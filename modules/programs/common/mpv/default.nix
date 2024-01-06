@@ -3,6 +3,15 @@
 {
   programs.mpv = {
     enable = true;
+    scripts = with pkgs.mpvScripts; [
+      uosc
+      mpris
+      seekTo
+      convert
+      autoload
+      thumbfast
+      mpv-playlistmanager
+    ];
   };
   xdg.configFile = {
     "mpv/mpv.conf".source = ./mpv.conf;
@@ -11,7 +20,7 @@
     "mpv/profiles.conf".source = ./profiles.conf;
     "mpv/script-opts.conf".source = ./script-opts.conf;
     "mpv/script-opts".source = ./script-opts;
-    "mpv/scripts".source = ./scripts;
+    # "mpv/scripts".source = ./scripts;
     "mpv/vs".source = ./vs;
     "mpv/shaders".source = ./shaders;
     "mpv/fonts".source = ./fonts;
