@@ -62,6 +62,7 @@
       "terminal.integrated.fontSize" = 16;
       "files.autoSave" = "afterDelay";
       "hediet.vscode-drawio.resizeImage" = "null";
+      "explorer.confirmDragAndDrop" = false;
       "multiCommand.commands" = [
         {
           "command" = "multiCommand.multiEscape";
