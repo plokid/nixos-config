@@ -5,7 +5,8 @@
 }: {
   fonts = {
     fontDir.enable = true;
-    packages = with pkgs; [
+    enableDefaultPackages = true;
+    packages = (with pkgs; [
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
@@ -15,24 +16,26 @@
       source-sans-pro
       source-code-pro
       source-serif-pro
-    ];
+      wqy_zenhei
+      wqy_microhei
+    ]) ++ (with config.nur.repos;[
+      rewine.ttf-wps-fonts
+    ]);
     fontconfig = {
+      enable = true;
       defaultFonts = {
         emoji = [ "Noto Color Emoji" ];
         monospace = [
-          "Sarasa Term SC"
           "Noto Sans Mono CJK SC"
           "Sarasa Mono SC"
           "DejaVu Sans Mono"
         ];
         sansSerif = [
-          "Noto Sans"
           "Noto Sans CJK SC"
           "Source Han Sans SC"
           "DejaVu Sans"
         ];
         serif = [
-          "Noto Serif"
           "Noto Serif CJK SC"
           "Source Han Serif SC"
           "DejaVu Serif"
