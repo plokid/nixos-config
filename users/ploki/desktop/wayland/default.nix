@@ -14,6 +14,6 @@
       # ../../../modules/theme/catppuccin-dark/wayland
       # ../../../modules/theme/catppuccin-light/wayland
       # ../../../modules/theme/nord/wayland/default.nix
-    ] ++ (import ../../../modules/theme/catppuccin-dark/wayland)
-    ++ (import ../../../modules/programs/wayland);
+    ] ++ (import ../../theme/catppuccin-dark/wayland)
+    ++ (import ../../programs/wayland);
 }

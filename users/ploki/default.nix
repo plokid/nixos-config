@@ -6,7 +6,7 @@
 }: {
   imports =
     [
-      ./wayland/home.nix
+      ./desktop/wayland
       ./virtualisation/home.nix
       ./scripts
       ./shell/zsh
