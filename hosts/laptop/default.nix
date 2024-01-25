@@ -6,16 +6,15 @@
 , ...
 }: {
   imports =
-    (import ../../modules/hardware)
-    ++ (import ../../modules/virtualisation)
-    ++ (import ../../modules/programs/system)
+    (import ./hardware)
+    ++ (import ./virtualisation)
+    ++ (import ./programs/system)
     ++ [
-      ../../modules/fonts
+      ./fonts
       ./hardware-configuration.nix
       ./wayland
+      ./fcitx5
       #  ./x11
-    ] ++ [
-      ../../modules/fcitx5
     ];
 
   sops.defaultSopsFile = ../../../secrets/secrets.yaml;

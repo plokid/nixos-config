@@ -1,0 +1,16 @@
+[
+  ./firefox
+  ./gpg
+  ./music
+  ./neofetch
+  ./obs-studio
+  ./search
+  ./yt-dlp
+  ./zathura
+  ./kitty
+  ./joshuto
+  ./password-store
+  ./git
+  ./motrix
+  ./mpv
+]

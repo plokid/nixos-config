@@ -1,0 +1,7 @@
+__pycache__/
+build/
+*.userdb/
+sync/
+installation.yaml
+user.yaml
+lua/launcher_config.lua

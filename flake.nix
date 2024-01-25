@@ -130,6 +130,9 @@
             inherit nixpkgs self inputs user;
           }
         );
+        homeConfigurations = (
+          import ./users/ploki
+        );
       };
     };
 

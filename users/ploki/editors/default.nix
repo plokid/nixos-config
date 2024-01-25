@@ -1,0 +1,5 @@
+[
+  ./nvim
+  ./vscode
+  # ./emacs
+]
