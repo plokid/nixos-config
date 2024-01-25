@@ -8,7 +8,7 @@
   imports =
     (import ./hardware)
     ++ (import ./virtualisation)
-    ++ (import ./programs/system)
+    ++ (import ./programs)
     ++ [
       ./fonts
       ./hardware-configuration.nix
