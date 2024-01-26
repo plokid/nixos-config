@@ -10,6 +10,7 @@
     ++ (import ./virtualisation)
     ++ (import ./programs)
     ++ [
+      ./persistence.nix
       ./fonts
       ./hardware-configuration.nix
       ./desktop/wayland
@@ -81,55 +82,55 @@
   };
 
   environment = {
-    persistence."/nix/persist" = {
-      directories = [
-        "/etc/nixos" # bind mounted from /nix/persist/etc/nixos to /etc/nixos
-        "/etc/NetworkManager/system-connections"
-        #  "/etc/v2raya"
-        #  "/etc/secureboot"
-        "/var"
-      ];
-      files = [
-        "/etc/machine-id"
-      ];
-      users.${user} = {
-        directories = [
-          "Downloads"
-          "Music"
-          "Pictures"
-          "Documents"
-          "Videos"
-          "Templates"
-          "nixos-config"
-          "VMs"
-          "Program"
-          "Zotero"
-          "Games"
-          "Desktop"
-          ".cache"
-          ".config"
-          ".thunderbird"
-          ".cargo"
-          ".local"
-          ".mozilla"
-          ".zotero"
-          ".vscode"
-          ".minecraft"
-          {
-            directory = ".gnupg";
-            mode = "0700";
-          }
-          {
-            directory = ".ssh";
-            mode = "0700";
-          }
-        ];
-        files = [
-          ".hmcl.json"
-          ".zsh_history"
-        ];
-      };
-    };
+    # persistence."/nix/persist" = {
+    #   directories = [
+    #     "/etc/nixos" # bind mounted from /nix/persist/etc/nixos to /etc/nixos
+    #     "/etc/NetworkManager/system-connections"
+    #     #  "/etc/v2raya"
+    #     #  "/etc/secureboot"
+    #     "/var"
+    #   ];
+    #   files = [
+    #     "/etc/machine-id"
+    #   ];
+      # users.${user} = {
+      #   directories = [
+      #     "Downloads"
+      #     "Music"
+      #     "Pictures"
+      #     "Documents"
+      #     "Videos"
+      #     "Templates"
+      #     "nixos-config"
+      #     "VMs"
+      #     "Program"
+      #     "Zotero"
+      #     "Games"
+      #     "Desktop"
+      #     ".cache"
+      #     ".config"
+      #     ".thunderbird"
+      #     ".cargo"
+      #     ".local"
+      #     ".mozilla"
+      #     ".zotero"
+      #     ".vscode"
+      #     ".minecraft"
+      #     {
+      #       directory = ".gnupg";
+      #       mode = "0700";
+      #     }
+      #     {
+      #       directory = ".ssh";
+      #       mode = "0700";
+      #     }
+      #   ];
+      #   files = [
+      #     ".hmcl.json"
+      #     ".zsh_history"
+      #   ];
+      # };
+    # };
     systemPackages = with pkgs; [
       libnotify
       cinnamon.nemo
@@ -148,7 +149,6 @@
       nmap
       home-manager
     ];
-    variables.NIX_REMOTE = "daemon";
   };
 
   services.xserver = {
@@ -189,15 +189,6 @@
   #     };
   #   };
   # };
-
-  systemd.services.nix-daemon = {
-    environment = {
-      TMPDIR = "/var/cache/nix";
-    };
-    serviceConfig = {
-      CacheDirectory = "nix";
-    };
-  };
 
   security.polkit.enable = true;
   security.sudo = {

@@ -8,6 +8,7 @@
       ./virtualisation/home.nix
       ./scripts
       ./shell/zsh
+      ./persistence.nix
     ] ++ (import ./editors)
     ++ (import ./programs/common)
     ++ (import ./devlop);
