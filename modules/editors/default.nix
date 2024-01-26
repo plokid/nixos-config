@@ -1,5 +1,0 @@
-[
-  ./nvim
-  ./vscode
-  # ./emacs
-]

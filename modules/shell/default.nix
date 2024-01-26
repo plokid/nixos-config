@@ -1,5 +1,0 @@
-[
-  ./fish
-  ./bash
-  ./nushell
-]
