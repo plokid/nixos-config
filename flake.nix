@@ -5,6 +5,7 @@
     inputs @ { self
     , nixpkgs
     , flake-parts
+    , home-manager
     , ...
     }:
     let
@@ -20,7 +21,7 @@
       ];
       perSystem =
         { config
-        , inputs'
+        , inputs
         , pkgs
         , system
         , lib
@@ -131,7 +132,10 @@
           }
         );
         homeConfigurations = (
-          import ./users/ploki
+          import ./users {
+            system = "x86_64-linux";
+            inherit nixpkgs self inputs home-manager;
+          }
         );
       };
     };
@@ -143,7 +147,7 @@
     nil.url = "github:oxalica/nil";
     impermanence.url = "github:nix-community/impermanence";
     nur.url = "github:nix-community/NUR";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
+    # hyprpicker.url = "github:hyprwm/hyprpicker";
     hypr-contrib.url = "github:hyprwm/contrib";
     flake-parts.url = "github:hercules-ci/flake-parts";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -159,7 +163,7 @@
     flake-root.url = "github:srid/flake-root";
     mission-control.url = "github:Platonic-Systems/mission-control";
     treefmt-nix.url = "github:numtide/treefmt-nix";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    # emacs-overlay.url = "github:nix-community/emacs-overlay";
     #lanzaboote = {
     #please read this doc -> https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
     #  url = "github:nix-community/lanzaboote";

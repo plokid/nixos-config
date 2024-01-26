@@ -1,7 +1,5 @@
 { config
 , lib
-, pkgs
-, user
 , ...
 }: {
   imports =
@@ -15,8 +13,8 @@
     ++ (import ./devlop);
 
   home = {
-    username = "${user}";
-    homeDirectory = "/home/${user}";
+    username = "ploki";
+    homeDirectory = "/home/ploki";
   };
   programs = {
     home-manager.enable = true;
