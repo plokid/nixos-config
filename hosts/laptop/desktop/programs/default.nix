@@ -1,4 +1,0 @@
-[
-  ./steam
-  ./clash-verge
-]

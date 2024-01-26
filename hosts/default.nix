@@ -41,7 +41,7 @@ in
           #   users.${user} = {
           #     imports =
           #       [
-          #         ./laptop/home.nix
+          #         ../users/ploki
           #       ]
           #       ++ [
           #         inputs.hyprland.homeManagerModules.default
@@ -60,7 +60,7 @@ in
                 inputs.joshuto.overlays.default
                 inputs.go-musicfox.overlays.default
                 inputs.nixd.overlays.default
-                (import inputs.emacs-overlay)
+                # (import inputs.emacs-overlay)
               ]
               ++ (import ../overlays);
           };
