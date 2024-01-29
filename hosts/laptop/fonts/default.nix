@@ -18,6 +18,9 @@
       source-serif-pro
       wqy_zenhei
       wqy_microhei
+      fira-code
+      fira-code-symbols
+      fira-code-nerdfont
     ]) ++ (with config.nur.repos;[
       rewine.ttf-wps-fonts
     ]);
