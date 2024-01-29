@@ -15,13 +15,15 @@ let
 in
 {
   ploki = lib.homeManagerConfiguration {
-   inherit pkgs;
+    inherit pkgs;
     # extraSpecialArgs = { inherit system inputs; };
     modules =
       [
         ./ploki
         inputs.hyprland.homeManagerModules.default
         inputs.emanote.homeManagerModule
+        inputs.nur.nixosModules.nur
+        # inputs.impermanence.nixosModules.home-manager.impermanence
         {
           nixpkgs = {
             overlays =
