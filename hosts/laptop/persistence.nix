@@ -1,18 +1,59 @@
 {
-    environment.persistence."/nix/persist" = {
+  environment.persistence."/nix/persist" = {
+    directories = [
+      "/etc/nixos" # bind mounted from /nix/persist/etc/nixos to /etc/nixos
+      "/etc/NetworkManager/system-connections"
+      "/var"
+    ];
+    files = [
+      "/etc/machine-id"
+      "/root/.local/share/nix/trusted-settings.json"
+    ];
+    users.ploki = {
+      # allowOther = true;
+      # removePrefixDirectory = true;
       directories = [
-        "/etc/nixos" # bind mounted from /nix/persist/etc/nixos to /etc/nixos
-        "/etc/NetworkManager/system-connections"
-        "/var"
+        "Downloads"
+        "Music"
+        "Pictures"
+        "Documents"
+        "Videos"
+        "Templates"
+        "nixos-config"
+        "VMs"
+        "Program"
+        "Zotero"
+        "Games"
+        "Desktop"
+        ".cache"
+        ".config"
+        ".thunderbird"
+        ".cargo"
+        ".local"
+        ".mozilla"
+        ".zotero"
+        ".vscode"
+        ".minecraft"
+        {
+          directory = ".gnupg";
+          mode = "0700";
+        }
+        {
+          directory = ".ssh";
+          mode = "0700";
+        }
       ];
       files = [
-        "/etc/machine-id"
+        ".hmcl.json"
+        ".zsh_history"
       ];
     };
+  };
 
-    environment.variables.NIX_REMOTE = "daemon";
+  environment.variables.NIX_REMOTE = "daemon";
+  programs.fuse.userAllowOther = true;
 
-    systemd.services.nix-daemon = {
+  systemd.services.nix-daemon = {
     environment = {
       TMPDIR = "/var/cache/nix";
     };

@@ -27,6 +27,7 @@ in
       ]
       ++ [
         inputs.impermanence.nixosModules.impermanence
+        # inputs.impermanence.nixosModules.home-manager.impermanence
         inputs.nur.nixosModules.nur
         inputs.hyprland.nixosModules.default
         inputs.sops-nix.nixosModules.sops
@@ -34,21 +35,22 @@ in
         #inputs.lanzaboote.nixosModules.lanzaboote
         inputs.home-manager.nixosModules.home-manager
         {
-          # home-manager = {
-          #   useGlobalPkgs = true;
-          #   useUserPackages = true;
-          #   extraSpecialArgs = { inherit user; };
-          #   users.${user} = {
-          #     imports =
-          #       [
-          #         ../users/ploki
-          #       ]
-          #       ++ [
-          #         inputs.hyprland.homeManagerModules.default
-          #         inputs.emanote.homeManagerModule
-          #       ];
-          #   };
-          # };
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = { inherit user; };
+            users.${user} = {
+              imports =
+                [
+                  ../users/ploki
+                ]
+                ++ [
+                  inputs.hyprland.homeManagerModules.default
+                  inputs.emanote.homeManagerModule
+                  # inputs.impermanence.nixosModules.home-manager.impermanence
+                ];
+            };
+          };
           nixpkgs = {
             overlays =
               [

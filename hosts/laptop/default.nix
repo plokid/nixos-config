@@ -29,28 +29,28 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "libvirtd" "video" "audio" ];
-    packages =
-      (with pkgs; [
-        tdesktop
-        qq
-        #    feishu
-        thunderbird
-        blender
-        #    dbeaver
-        # aichat
-        zotero
-        wpsoffice-cn
-        microsoft-edge
-        hmcl
-      ])
-      ++ (with config.nur.repos; [
-        # linyinfeng.icalingua-plus-plus
-        linyinfeng.wemeet
-        rewine.ttf-wps-fonts
-        xddxdd.qqmusic
-        xddxdd.bilibili
-        YisuiMilena.hmcl-bin
-      ]);
+    # packages =
+    # (with pkgs; [
+    # tdesktop
+    # qq
+    # feishu
+    # thunderbird
+    # blender
+    # dbeaver
+    # aichat
+    # zotero
+    # wpsoffice-cn
+    # microsoft-edge
+    # hmcl
+    # ])
+    # ++ (with config.nur.repos; [
+    # linyinfeng.icalingua-plus-plus
+    # linyinfeng.wemeet
+    # rewine.ttf-wps-fonts
+    # xddxdd.qqmusic
+    # xddxdd.bilibili
+    # YisuiMilena.hmcl-bin
+    # ]);
   };
   boot = {
     supportedFilesystems = [ "ntfs" ];
@@ -81,75 +81,23 @@
     initrd.verbose = false;
   };
 
-  environment = {
-    # persistence."/nix/persist" = {
-    #   directories = [
-    #     "/etc/nixos" # bind mounted from /nix/persist/etc/nixos to /etc/nixos
-    #     "/etc/NetworkManager/system-connections"
-    #     #  "/etc/v2raya"
-    #     #  "/etc/secureboot"
-    #     "/var"
-    #   ];
-    #   files = [
-    #     "/etc/machine-id"
-    #   ];
-      # users.${user} = {
-      #   directories = [
-      #     "Downloads"
-      #     "Music"
-      #     "Pictures"
-      #     "Documents"
-      #     "Videos"
-      #     "Templates"
-      #     "nixos-config"
-      #     "VMs"
-      #     "Program"
-      #     "Zotero"
-      #     "Games"
-      #     "Desktop"
-      #     ".cache"
-      #     ".config"
-      #     ".thunderbird"
-      #     ".cargo"
-      #     ".local"
-      #     ".mozilla"
-      #     ".zotero"
-      #     ".vscode"
-      #     ".minecraft"
-      #     {
-      #       directory = ".gnupg";
-      #       mode = "0700";
-      #     }
-      #     {
-      #       directory = ".ssh";
-      #       mode = "0700";
-      #     }
-      #   ];
-      #   files = [
-      #     ".hmcl.json"
-      #     ".zsh_history"
-      #   ];
-      # };
-    # };
-    systemPackages = with pkgs; [
-      libnotify
-      cinnamon.nemo
-      polkit_gnome
-      networkmanagerapplet
-      alsa-lib
-      alsa-utils
-      flac
-      pulsemixer
-      linux-firmware
-      sshpass
-      #  pkgs.rust-bin.stable.latest.default
-      lxappearance
-      imagemagick
-      flameshot
-      nmap
-      home-manager
-    ];
-  };
+  environment.systemPackages = with pkgs; [
+    libnotify
+    cinnamon.nemo
+    polkit_gnome
+    networkmanagerapplet
+    alsa-lib
+    alsa-utils
+    flac
+    pulsemixer
+    linux-firmware
+    sshpass
+    #  pkgs.rust-bin.stable.latest.default
+    lxappearance
+    imagemagick
+    flameshot
+    nmap
+  ];
 
   services.xserver = {
     xkbOptions = "caps:escape";
