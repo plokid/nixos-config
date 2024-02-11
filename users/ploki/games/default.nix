@@ -1,0 +1,4 @@
+[
+    ./hmcl
+    ./lutris
+]

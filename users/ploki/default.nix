@@ -12,6 +12,7 @@
       # ./persistence.nix
     ] ++ (import ./editors)
     ++ (import ./programs/common)
+    ++ (import ./games)
     ++ (import ./devlop);
 
   home = {
@@ -33,8 +34,8 @@
       zotero
       wpsoffice-cn
       microsoft-edge
-      hmcl
       cabextract
+      keepassxc
     ]);
   # ++ (with config.nur.repos; [
   # linyinfeng.icalingua-plus-plus
