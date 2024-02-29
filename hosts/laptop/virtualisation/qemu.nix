@@ -15,4 +15,21 @@
   networking.firewall.trustedInterfaces = [ "virbr0" ];
   programs.dconf.enable = true;
   users.groups.libvirtd.members = [ "${user}" ];
+
+  services.samba = {
+    enable = true;
+    shares = {
+      qemu = {
+        path = "/home/ploki/Public";
+        "read only" = "no";
+        "writable" = "yes";
+        "browseable" = "yes";
+        "public" = "yes";
+        "security" = "user";
+        "guest ok" = "yes";
+        "hosts allow" = "192.168.122.";
+        "force user" = "ploki";
+      };
+    };
+  };
 }
