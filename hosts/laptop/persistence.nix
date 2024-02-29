@@ -19,6 +19,7 @@
         "Documents"
         "Videos"
         "Templates"
+        "Public"
         "nixos-config"
         "VMs"
         "Program"
