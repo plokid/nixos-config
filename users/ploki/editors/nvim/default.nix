@@ -16,6 +16,7 @@
       nvim-treesitter.withAllGrammars
     ];
     extraPackages = with pkgs; [
+      fira-code
       #-- Misc
       tree-sitter # common language parser/highlighter
       nodePackages.prettier # common code formatter
@@ -31,5 +32,5 @@
     ];
   };
 
-  home.packages = [ pkgs.neovide ];
+  # home.packages = [ pkgs.neovide ];
 }
