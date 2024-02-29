@@ -30,12 +30,12 @@
       tdesktop
       qq
       thunderbird
-      blender
       zotero
       wpsoffice-cn
       microsoft-edge
       cabextract
-      keepassxc
+      wine
+      winetricks
     ]);
   # ++ (with config.nur.repos; [
   # linyinfeng.icalingua-plus-plus
