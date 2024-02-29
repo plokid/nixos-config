@@ -29,28 +29,23 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "libvirtd" "video" "audio" ];
-    # packages =
-    # (with pkgs; [
-    # tdesktop
-    # qq
-    # feishu
-    # thunderbird
-    # blender
-    # dbeaver
-    # aichat
-    # zotero
-    # wpsoffice-cn
-    # microsoft-edge
-    # hmcl
-    # ])
-    # ++ (with config.nur.repos; [
-    # linyinfeng.icalingua-plus-plus
-    # linyinfeng.wemeet
-    # rewine.ttf-wps-fonts
-    # xddxdd.qqmusic
-    # xddxdd.bilibili
-    # YisuiMilena.hmcl-bin
-    # ]);
+    packages =
+      # (with pkgs; [
+      # tdesktop
+      # qq
+      # feishu
+      # thunderbird
+      # blender
+      # dbeaver
+      # aichat
+      # zotero
+      # wpsoffice-cn
+      # microsoft-edge
+      # hmcl
+      # ])
+      (with config.nur.repos; [
+        linyinfeng.wemeet
+      ]);
   };
   boot = {
     supportedFilesystems = [ "ntfs" ];
@@ -95,12 +90,12 @@
     #  pkgs.rust-bin.stable.latest.default
     lxappearance
     imagemagick
-    flameshot
-    nmap
+    cmake
+    gnumake
   ];
 
   services.xserver = {
-    xkbOptions = "caps:escape";
+    xkb.options = "caps:escape";
   };
   console.useXkbConfig = true;
 
