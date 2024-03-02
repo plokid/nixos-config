@@ -1,6 +1,7 @@
 { config
 , lib
 , pkgs
+, inputs
 , ...
 }: {
   imports =
@@ -36,13 +37,11 @@
       cabextract
       wine
       winetricks
-    ]);
-  # ++ (with config.nur.repos; [
-  # linyinfeng.icalingua-plus-plus
-  # linyinfeng.wemeet
-  # rewine.ttf-wps-fonts
-  # xddxdd.qqmusic
-  # xddxdd.bilibili
-  # YisuiMilena.hmcl-bin
-  # ]);
+    ])
+  ++ (with pkgs.nur.repos; [
+  linyinfeng.wemeet
+  rewine.ttf-wps-fonts
+  xddxdd.qqmusic
+  xddxdd.bilibili
+  ]);
 }

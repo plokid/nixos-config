@@ -22,7 +22,6 @@ in
         ./ploki
         inputs.hyprland.homeManagerModules.default
         inputs.emanote.homeManagerModule
-        inputs.nur.nixosModules.nur
         # inputs.impermanence.nixosModules.home-manager.impermanence
         {
           nixpkgs = {
@@ -36,6 +35,7 @@ in
                 inputs.joshuto.overlays.default
                 inputs.go-musicfox.overlays.default
                 inputs.nixd.overlays.default
+                inputs.nur.overlay
                 # (import inputs.emacs-overlay)
               ]
               ++ (import ../overlays);

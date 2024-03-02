@@ -29,7 +29,7 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "libvirtd" "video" "audio" ];
-    packages =
+    # packages =
       # (with pkgs; [
       # tdesktop
       # qq
@@ -43,9 +43,9 @@
       # microsoft-edge
       # hmcl
       # ])
-      (with config.nur.repos; [
-        linyinfeng.wemeet
-      ]);
+      # (with config.nur.repos; [
+        # linyinfeng.wemeet
+      # ]);
   };
   boot = {
     supportedFilesystems = [ "ntfs" ];
