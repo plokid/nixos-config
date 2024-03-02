@@ -12,6 +12,7 @@
         collection-langchinese
         collection-mathscience
         algorithms
+        background
         biblatex
         biblatex-trad
         biblatex-ieee
@@ -19,11 +20,14 @@
         biber
         xltxtra
         xstring
+        framed
         realscripts
         xifthen
         ifmtarg
         titlesec
+        multirow
         enumitem
+        everypage
         nth
         setspace
         cite
