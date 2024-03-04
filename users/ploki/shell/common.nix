@@ -156,5 +156,6 @@ in
     du-dust
     bat
     trash-cli
+    jq
   ];
 }
