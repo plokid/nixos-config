@@ -46,7 +46,6 @@ in
                 ]
                 ++ [
                   inputs.hyprland.homeManagerModules.default
-                  inputs.emanote.homeManagerModule
                   # inputs.impermanence.nixosModules.home-manager.impermanence
                 ];
             };
@@ -59,8 +58,6 @@ in
                 inputs.rust-overlay.overlays.default
                 inputs.picom.overlays.default
                 inputs.nil.overlays.default
-                inputs.joshuto.overlays.default
-                inputs.go-musicfox.overlays.default
                 inputs.nixd.overlays.default
                 inputs.nur.overlay
                 # (import inputs.emacs-overlay)

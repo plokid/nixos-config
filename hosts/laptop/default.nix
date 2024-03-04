@@ -14,7 +14,7 @@
       ./fonts
       ./hardware-configuration.nix
       ./desktop/wayland
-      ./fcitx5
+      # ./fcitx5
       #  ./x11
     ];
 
@@ -30,22 +30,22 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "libvirtd" "video" "audio" ];
     # packages =
-      # (with pkgs; [
-      # tdesktop
-      # qq
-      # feishu
-      # thunderbird
-      # blender
-      # dbeaver
-      # aichat
-      # zotero
-      # wpsoffice-cn
-      # microsoft-edge
-      # hmcl
-      # ])
-      # (with config.nur.repos; [
-        # linyinfeng.wemeet
-      # ]);
+    # (with pkgs; [
+    # tdesktop
+    # qq
+    # feishu
+    # thunderbird
+    # blender
+    # dbeaver
+    # aichat
+    # zotero
+    # wpsoffice-cn
+    # microsoft-edge
+    # hmcl
+    # ])
+    # (with config.nur.repos; [
+    # linyinfeng.wemeet
+    # ]);
   };
   boot = {
     supportedFilesystems = [ "ntfs" ];
@@ -92,6 +92,7 @@
     imagemagick
     cmake
     gnumake
+    patchelf
   ];
 
   services.xserver = {
