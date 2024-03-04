@@ -13,4 +13,6 @@
   ./git
   ./motrix
   ./mpv
+  ./lazygit
+  ./direnv
 ]

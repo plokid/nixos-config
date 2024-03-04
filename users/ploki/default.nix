@@ -9,11 +9,11 @@
       ./desktop/wayland
       ./virtualisation/home.nix
       ./scripts
-      ./shell/zsh
-      # ./persistence.nix
+      ./fcitx5
     ] ++ (import ./editors)
     ++ (import ./programs/common)
     ++ (import ./games)
+    ++ (import ./shell)
     ++ (import ./devlop);
 
   home = {
@@ -39,9 +39,9 @@
       winetricks
     ])
   ++ (with pkgs.nur.repos; [
-  linyinfeng.wemeet
-  rewine.ttf-wps-fonts
-  xddxdd.qqmusic
-  xddxdd.bilibili
+    linyinfeng.wemeet
+    rewine.ttf-wps-fonts
+    xddxdd.qqmusic
+    xddxdd.bilibili
   ]);
 }
