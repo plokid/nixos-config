@@ -25,6 +25,8 @@
       fzf
       vim-full
 
+      nixpkgs-fmt
+
       ripgrep # fast search tool, required by AstroNvim's '<leader>fw'(<leader> is space key)
       fd
       lazygit
