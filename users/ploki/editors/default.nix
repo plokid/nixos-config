@@ -1,6 +1,5 @@
 [
   ./nvim
   ./vscode
-  ./nixvim
   # ./emacs
 ]
