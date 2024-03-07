@@ -6,7 +6,6 @@
 
 ]]
 
-
 local utils = require("mp.utils")
 
 local fonts_dir_init = mp.get_property_native("sub-fonts-dir")

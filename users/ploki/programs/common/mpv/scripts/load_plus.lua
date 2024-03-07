@@ -19,12 +19,12 @@ COMMIT_ 04fe818fc703d8c5dcc3a6aabe1caeed8286bdbb
 
 ]]
 
-local msg = require "mp.msg"
-local options = require "mp.options"
-local utils = require "mp.utils"
+local msg = require("mp.msg")
+local options = require("mp.options")
+local utils = require("mp.utils")
 
 opt = {
-	level = 1,                  -- <0|1|2|3>
+	level = 1, -- <0|1|2|3>
 	video = true,
 	video_ext = "default",
 	audio = false,
@@ -33,7 +33,7 @@ opt = {
 	image_ext = "default",
 	skip_hidden = true,
 	max_entries = 150,
-	directory_mode = "ignore"
+	directory_mode = "ignore",
 }
 options.read_options(opt)
 
@@ -43,14 +43,18 @@ MAXDIRSTACK = 20
 -- 单文件时自动补充队列
 --
 
-function Set (t)
+function Set(t)
 	local set = {}
-	for _, v in pairs(t) do set[v] = true end
+	for _, v in pairs(t) do
+		set[v] = true
+	end
 	return set
 end
 
-function SetUnion (a,b)
-	for k in pairs(b) do a[k] = true end
+function SetUnion(a, b)
+	for k in pairs(b) do
+		a[k] = true
+	end
 	return a
 end
 
@@ -59,19 +63,32 @@ if opt.video_ext ~= "default" then
 	for x in opt.video_ext:gmatch("[^,]+") do
 		table.insert(video_ext_tab, x)
 	end
-	EXTENSIONS_VIDEO = Set (video_ext_tab)
+	EXTENSIONS_VIDEO = Set(video_ext_tab)
 else
-	EXTENSIONS_VIDEO = Set {
-		"3g2","3gp",
-		"amv","asf","avi",
-		"f4v","flv",
-		"m2ts","m4v","mkv","mov","mp4","mpeg","mpg",
+	EXTENSIONS_VIDEO = Set({
+		"3g2",
+		"3gp",
+		"amv",
+		"asf",
+		"avi",
+		"f4v",
+		"flv",
+		"m2ts",
+		"m4v",
+		"mkv",
+		"mov",
+		"mp4",
+		"mpeg",
+		"mpg",
 		"ogv",
-		"rm","rmvb",
+		"rm",
+		"rmvb",
 		"ts",
 		"vob",
-		"webm","wmv",
-		"y4m" }
+		"webm",
+		"wmv",
+		"y4m",
+	})
 end
 
 if opt.audio_ext ~= "default" then
@@ -79,16 +96,28 @@ if opt.audio_ext ~= "default" then
 	for x in opt.audio_ext:gmatch("[^,]+") do
 		table.insert(audio_ext_tab, x)
 	end
-	EXTENSIONS_AUDIO = Set (audio_ext_tab)
+	EXTENSIONS_AUDIO = Set(audio_ext_tab)
 else
-	EXTENSIONS_AUDIO = Set {
-		"aac","aiff","alac","ape","au",
+	EXTENSIONS_AUDIO = Set({
+		"aac",
+		"aiff",
+		"alac",
+		"ape",
+		"au",
 		"dsf",
 		"flac",
-		"m4a","mp3",
-		"oga","ogg","ogm","opus",
-		"tak","tta",
-		"wav","wma","wv" }
+		"m4a",
+		"mp3",
+		"oga",
+		"ogg",
+		"ogm",
+		"opus",
+		"tak",
+		"tta",
+		"wav",
+		"wma",
+		"wv",
+	})
 end
 
 if opt.image_ext ~= "default" then
@@ -96,24 +125,38 @@ if opt.image_ext ~= "default" then
 	for x in opt.image_ext:gmatch("[^,]+") do
 		table.insert(image_ext_tab, x)
 	end
-	EXTENSIONS_IMAGE = Set (image_ext_tab)
+	EXTENSIONS_IMAGE = Set(image_ext_tab)
 else
-	EXTENSIONS_IMAGE = Set {
-		"apng","avif",
+	EXTENSIONS_IMAGE = Set({
+		"apng",
+		"avif",
 		"bmp",
 		"gif",
-		"j2k", "jfif","jp2","jpeg","jpg",
+		"j2k",
+		"jfif",
+		"jp2",
+		"jpeg",
+		"jpg",
 		"png",
 		"svg",
-		"tga","tif","tiff",
+		"tga",
+		"tif",
+		"tiff",
 		"uci",
-		"webp" }
+		"webp",
+	})
 end
 
-EXTENSIONS = Set {}
-if opt.video then EXTENSIONS = SetUnion(EXTENSIONS, EXTENSIONS_VIDEO) end
-if opt.audio then EXTENSIONS = SetUnion(EXTENSIONS, EXTENSIONS_AUDIO) end
-if opt.image then EXTENSIONS = SetUnion(EXTENSIONS, EXTENSIONS_IMAGE) end
+EXTENSIONS = Set({})
+if opt.video then
+	EXTENSIONS = SetUnion(EXTENSIONS, EXTENSIONS_VIDEO)
+end
+if opt.audio then
+	EXTENSIONS = SetUnion(EXTENSIONS, EXTENSIONS_AUDIO)
+end
+if opt.image then
+	EXTENSIONS = SetUnion(EXTENSIONS, EXTENSIONS_IMAGE)
+end
 
 function validate_directory_mode()
 	if opt.directory_mode ~= "recursive" and opt.directory_mode ~= "lazy" and opt.directory_mode ~= "ignore" then
@@ -131,7 +174,7 @@ function add_files(files)
 end
 
 function get_extension(path)
-	match = string.match(path, "%.([^%.]+)$" )
+	match = string.match(path, "%.([^%.]+)$")
 	if match == nil then
 		return "nomatch"
 	else
@@ -170,11 +213,11 @@ if is_windows then
 			shlwapi = ffi.load("shlwapi"),
 		}
 
-		ffi.cdef[[
+		ffi.cdef([[
 			int __stdcall MultiByteToWideChar(unsigned int CodePage, unsigned long dwFlags, const char *lpMultiByteStr,
 			int cbMultiByte, wchar_t *lpWideCharStr, int cchWideChar);
 			int __stdcall StrCmpLogicalW(wchar_t *psz1, wchar_t *psz2);
-		]]
+		]])
 
 		winapi.utf8_to_wide = function(utf8_str)
 			if utf8_str then
@@ -205,18 +248,19 @@ end
 
 function alphanumsort_lua(filenames)
 	local function padnum(n, d)
-		return #d > 0 and ("%03d%s%.12f"):format(#n, n, tonumber(d) / (10 ^ #d))
-			or ("%03d%s"):format(#n, n)
+		return #d > 0 and ("%03d%s%.12f"):format(#n, n, tonumber(d) / (10 ^ #d)) or ("%03d%s"):format(#n, n)
 	end
 
 	local tuples = {}
 	for i, f in ipairs(filenames) do
-		tuples[i] = {f:lower():gsub("0*(%d+)%.?(%d*)", padnum), f}
+		tuples[i] = { f:lower():gsub("0*(%d+)%.?(%d*)", padnum), f }
 	end
 	table.sort(tuples, function(a, b)
 		return a[1] == b[1] and #b[2] < #a[2] or a[1] < b[1]
 	end)
-	for i, tuple in ipairs(tuples) do filenames[i] = tuple[2] end
+	for i, tuple in ipairs(tuples) do
+		filenames[i] = tuple[2]
+	end
 	return filenames
 end
 
@@ -241,10 +285,10 @@ function scan_dir(path, current_file, dir_mode, separator, dir_depth, total_file
 	local files = utils.readdir(path, "files") or {}
 	local dirs = dir_mode ~= "ignore" and utils.readdir(path, "dirs") or {}
 	local prefix = path == "." and "" or path
-	table.filter(files, function (v)
+	table.filter(files, function(v)
 		-- The current file could be a hidden file, ignoring it doesn't load other
 		-- files from the current directory.
-		if (opt.skip_hidden and not (prefix .. v == current_file) and string.match(v, "^%.")) then
+		if opt.skip_hidden and not (prefix .. v == current_file) and string.match(v, "^%.") then
 			return false
 		end
 		local ext = get_extension(v)
@@ -252,24 +296,24 @@ function scan_dir(path, current_file, dir_mode, separator, dir_depth, total_file
 			return false
 		end
 
-	if opt.level == 3 then
-		local name = mp.get_property("filename")
-		local namepre = string.sub(name, 1, 6)
-		local namepre0 = string.gsub(namepre, "%p", "%%%1")
-		for ext, _ in pairs(EXTENSIONS) do
-			if string.match(name, ext.."$") ~= nil then
-				if string.match(v, "^"..namepre0) == nil then
-				return false
+		if opt.level == 3 then
+			local name = mp.get_property("filename")
+			local namepre = string.sub(name, 1, 6)
+			local namepre0 = string.gsub(namepre, "%p", "%%%1")
+			for ext, _ in pairs(EXTENSIONS) do
+				if string.match(name, ext .. "$") ~= nil then
+					if string.match(v, "^" .. namepre0) == nil then
+						return false
+					end
 				end
 			end
 		end
-	end
 
 		return extensions[string.lower(ext)]
 	end)
 
 	table.filter(dirs, function(d)
-		return not ((opt.skip_hidden and string.match(d, "^%.")))
+		return not (opt.skip_hidden and string.match(d, "^%."))
 	end)
 	alphanumsort(files)
 	alphanumsort(dirs)
@@ -281,8 +325,15 @@ function scan_dir(path, current_file, dir_mode, separator, dir_depth, total_file
 	table.append(total_files, files)
 	if dir_mode == "recursive" then
 		for _, dir in ipairs(dirs) do
-			scan_dir(prefix .. dir .. separator, current_file, dir_mode,
-						separator, dir_depth + 1, total_files, extensions)
+			scan_dir(
+				prefix .. dir .. separator,
+				current_file,
+				dir_mode,
+				separator,
+				dir_depth + 1,
+				total_files,
+				extensions
+			)
 		end
 	else
 		for i, dir in ipairs(dirs) do
@@ -307,8 +358,7 @@ function find_and_add_entries()
 	local pl_count = mp.get_property_number("playlist-count", 1)
 	this_ext = get_extension(filename)
 	-- check if this is a manually made playlist
-	if (pl_count > 1 and autoloaded == nil) or
-		(pl_count == 1 and EXTENSIONS[string.lower(this_ext)] == nil) then
+	if (pl_count > 1 and autoloaded == nil) or (pl_count == 1 and EXTENSIONS[string.lower(this_ext)] == nil) then
 		msg.warn("自动队列中止：已手动创建/修改播放列表")
 		return
 	else
@@ -334,8 +384,7 @@ function find_and_add_entries()
 
 	local pl = mp.get_property_native("playlist", {})
 	local pl_current = mp.get_property_number("playlist-pos-1", 1)
-	msg.trace(("playlist-pos-1: %s, playlist: %s"):format(pl_current,
-		utils.to_string(pl)))
+	msg.trace(("playlist-pos-1: %s, playlist: %s"):format(pl_current, utils.to_string(pl)))
 
 	local files = {}
 	do
@@ -360,7 +409,7 @@ function find_and_add_entries()
 	if current == nil then
 		return
 	end
-	msg.trace("自动队列：当前文件所处序列 "..current)
+	msg.trace("自动队列：当前文件所处序列 " .. current)
 
 	-- treat already existing playlist entries, independent of how they got added
 	-- as if they got added by autoload
@@ -368,7 +417,7 @@ function find_and_add_entries()
 		added_entries[entry.filename] = true
 	end
 
-	local append = {[-1] = {}, [1] = {}}
+	local append = { [-1] = {}, [1] = {} }
 	for direction = -1, 1, 2 do -- 2 iterations, with direction = -1 and +1
 		for i = 1, opt.max_entries do
 			local pos = current + i * direction
@@ -381,11 +430,11 @@ function find_and_add_entries()
 			if not added_entries[file] then
 				if direction == -1 then
 					msg.info("自动队列 追加（前）" .. file)
-					table.insert(append[-1], 1, {file, pl_current + i * direction + 1})
+					table.insert(append[-1], 1, { file, pl_current + i * direction + 1 })
 				else
 					msg.info("自动队列 追加（后）" .. file)
 					if pl_count > 1 then
-						table.insert(append[1], {file, pl_current + i * direction - 1})
+						table.insert(append[1], { file, pl_current + i * direction - 1 })
 					else
 						mp.commandv("loadfile", file, "append")
 					end
@@ -407,16 +456,21 @@ function find_and_add_entries()
 	end
 end
 
-
 --
 -- 弹出对话框加载文件
 --
 
 function import_files()
 	local was_ontop = mp.get_property_native("ontop")
-	if was_ontop then mp.set_property_native("ontop", false) end
+	if was_ontop then
+		mp.set_property_native("ontop", false)
+	end
 	local res = utils.subprocess({
-		args = {'powershell', '-NoProfile', '-Command', [[& {
+		args = {
+			"powershell",
+			"-NoProfile",
+			"-Command",
+			[[& {
 			Trap {
 				Write-Error -ErrorRecord $_
 				Exit 1
@@ -432,13 +486,18 @@ function import_files()
 					$out.Write($u8filename, 0, $u8filename.Length)
 				}
 			}
-		}]]},
+		}]],
+		},
 		cancellable = false,
 	})
-	if was_ontop then mp.set_property_native("ontop", true) end
-	if (res.status ~= 0) then return end
+	if was_ontop then
+		mp.set_property_native("ontop", true)
+	end
+	if res.status ~= 0 then
+		return
+	end
 	local first_file = true
-	for filename in string.gmatch(res.stdout, '[^\n]+') do
+	for filename in string.gmatch(res.stdout, "[^\n]+") do
 		mp.commandv("loadfile", filename, first_file and "replace" or "append")
 		first_file = false
 	end
@@ -446,9 +505,15 @@ end
 
 function import_url()
 	local was_ontop = mp.get_property_native("ontop")
-	if was_ontop then mp.set_property_native("ontop", false) end
+	if was_ontop then
+		mp.set_property_native("ontop", false)
+	end
 	local res = utils.subprocess({
-		args = {'powershell', '-NoProfile', '-Command', [[& {
+		args = {
+			"powershell",
+			"-NoProfile",
+			"-Command",
+			[[& {
 			Trap {
 				Write-Error -ErrorRecord $_
 				Exit 1
@@ -459,19 +524,30 @@ function import_url()
 			$urlname = [Microsoft.VisualBasic.Interaction]::InputBox("输入地址", "打开", "https://")
 			$u8urlname = $u8.GetBytes("$urlname")
 			$out.Write($u8urlname, 0, $u8urlname.Length)
-		}]]},
+		}]],
+		},
 		cancellable = false,
 	})
-	if was_ontop then mp.set_property_native("ontop", true) end
-	if (res.status ~= 0) then return end
+	if was_ontop then
+		mp.set_property_native("ontop", true)
+	end
+	if res.status ~= 0 then
+		return
+	end
 	mp.commandv("loadfile", res.stdout)
 end
 
 function append_aid()
 	local was_ontop = mp.get_property_native("ontop")
-	if was_ontop then mp.set_property_native("ontop", false) end
+	if was_ontop then
+		mp.set_property_native("ontop", false)
+	end
 	local res = utils.subprocess({
-		args = {'powershell', '-NoProfile', '-Command', [[& {
+		args = {
+			"powershell",
+			"-NoProfile",
+			"-Command",
+			[[& {
 			Trap {
 				Write-Error -ErrorRecord $_
 				Exit 1
@@ -487,21 +563,32 @@ function append_aid()
 					$out.Write($u8filename, 0, $u8filename.Length)
 				}
 			}
-		}]]},
+		}]],
+		},
 		cancellable = false,
 	})
-	if was_ontop then mp.set_property_native("ontop", true) end
-	if (res.status ~= 0) then return end
-	for filename in string.gmatch(res.stdout, '[^\n]+') do
+	if was_ontop then
+		mp.set_property_native("ontop", true)
+	end
+	if res.status ~= 0 then
+		return
+	end
+	for filename in string.gmatch(res.stdout, "[^\n]+") do
 		mp.commandv("audio-add", filename, "auto")
 	end
 end
 
 function append_sid()
 	local was_ontop = mp.get_property_native("ontop")
-	if was_ontop then mp.set_property_native("ontop", false) end
+	if was_ontop then
+		mp.set_property_native("ontop", false)
+	end
 	local res = utils.subprocess({
-		args = {'powershell', '-NoProfile', '-Command', [[& {
+		args = {
+			"powershell",
+			"-NoProfile",
+			"-Command",
+			[[& {
 			Trap {
 				Write-Error -ErrorRecord $_
 				Exit 1
@@ -517,17 +604,20 @@ function append_sid()
 					$out.Write($u8filename, 0, $u8filename.Length)
 				}
 			}
-		}]]},
+		}]],
+		},
 		cancellable = false,
 	})
-	if was_ontop then mp.set_property_native("ontop", true) end
-	if (res.status ~= 0) then return end
-	for filename in string.gmatch(res.stdout, '[^\n]+') do
+	if was_ontop then
+		mp.set_property_native("ontop", true)
+	end
+	if res.status ~= 0 then
+		return
+	end
+	for filename in string.gmatch(res.stdout, "[^\n]+") do
 		mp.commandv("sub-add", filename, "cached")
 	end
 end
-
-
 
 mp.register_event("end-file", remove_vfSub)
 

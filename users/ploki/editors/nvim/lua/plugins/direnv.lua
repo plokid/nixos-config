@@ -1,4 +1,4 @@
 return {
-  "direnv/direnv.vim",
-  event = "VeryLazy",
+	"direnv/direnv.vim",
+	event = "VeryLazy",
 }

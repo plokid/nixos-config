@@ -46,11 +46,12 @@ local settings = {
 	playing_selected_file = "{\\c&C1C1FF&}➔ %name",
 	playlist_sliced_prefix = "▲",
 	playlist_sliced_suffix = "▼",
-
 }
 
 local opts = require("mp.options")
-opts.read_options(settings, nil, function(list) update_opts(list) end)
+opts.read_options(settings, nil, function(list)
+	update_opts(list)
+end)
 
 local utils = require("mp.utils")
 local msg = require("mp.msg")
@@ -85,9 +86,11 @@ function on_file_loaded()
 	end
 
 	if settings.sync_cursor_on_load then
-		cursor=pos
+		cursor = pos
 		--refresh playlist if cursor moved
-		if playlist_visible then draw_playlist() end
+		if playlist_visible then
+			draw_playlist()
+		end
 	end
 
 	strippedname = stripfilename(mp.get_property("media-title"))
@@ -117,7 +120,9 @@ function on_end_file()
 	path = nil
 	directory = nil
 	filename = nil
-	if playlist_visible then playlist_show() end
+	if playlist_visible then
+		playlist_show()
+	end
 end
 
 function refresh_globals()
@@ -127,11 +132,15 @@ end
 
 --strip a filename based on its extension or protocol according to rules in settings
 function stripfilename(pathfile, media_title)
-	if pathfile == nil then return "" end
+	if pathfile == nil then
+		return ""
+	end
 	local ext = pathfile:match("%.([^%.]+)$")
-	if not ext then ext = "" end
+	if not ext then
+		ext = ""
+	end
 	local tmp = pathfile
-	if settings.slice_longfilenames and tmp:len()>settings.slice_longfilenames_amount+5 then
+	if settings.slice_longfilenames and tmp:len() > settings.slice_longfilenames_amount + 5 then
 		tmp = tmp:sub(1, settings.slice_longfilenames_amount):gsub(".[\128-\191]*$", "") .. " ..."
 	end
 	return tmp
@@ -140,7 +149,9 @@ end
 --gets the file info of an item
 function get_file_info(item)
 	local path = mp.get_property("playlist/" .. item - 1 .. "/filename")
-	if is_protocol(path) then return {} end
+	if is_protocol(path) then
+		return {}
+	end
 	local file_info = utils.file_info(path)
 	if not file_info then
 		msg.warn("failed to read file info for", path)
@@ -153,7 +164,10 @@ end
 --gets a nicename of playlist entry at 0-based position i
 function get_name_from_index(i, notitle)
 	refresh_globals()
-	if plen <= i then msg.error("no index in playlist", i, "length", plen); return nil end
+	if plen <= i then
+		msg.error("no index in playlist", i, "length", plen)
+		return nil
+	end
 	local _, name = nil
 	local title = mp.get_property("playlist/" .. i .. "/title")
 	local name = mp.get_property("playlist/" .. i .. "/filename")
@@ -189,24 +203,26 @@ end
 function parse_header(string)
 	local esc_title = stripfilename(mp.get_property("media-title"), true):gsub("%%", "%%%%")
 	local esc_file = stripfilename(mp.get_property("filename")):gsub("%%", "%%%%")
-	return string:gsub("%%N", "\\N")
-				 :gsub("%%pos", mp.get_property_number("playlist-pos",0)+1)
-				 :gsub("%%plen", mp.get_property("playlist-count"))
-				 :gsub("%%cursor", cursor+1)
-				 :gsub("%%mediatitle", esc_title)
-				 :gsub("%%filename", esc_file)
-				 -- undo name escape
-				 :gsub("%%%%", "%%")
+	return string
+		:gsub("%%N", "\\N")
+		:gsub("%%pos", mp.get_property_number("playlist-pos", 0) + 1)
+		:gsub("%%plen", mp.get_property("playlist-count"))
+		:gsub("%%cursor", cursor + 1)
+		:gsub("%%mediatitle", esc_title)
+		:gsub("%%filename", esc_file)
+		-- undo name escape
+		:gsub("%%%%", "%%")
 end
 
 function parse_filename(string, name, index)
 	local base = tostring(plen):len()
 	local esc_name = stripfilename(name):gsub("%%", "%%%%")
-	return string:gsub("%%N", "\\N")
-				 :gsub("%%pos", string.format("%0" .. base .. "d", index+1))
-				 :gsub("%%name", esc_name)
-				 -- undo name escape
-				 :gsub("%%%%", "%%")
+	return string
+		:gsub("%%N", "\\N")
+		:gsub("%%pos", string.format("%0" .. base .. "d", index + 1))
+		:gsub("%%name", esc_name)
+		-- undo name escape
+		:gsub("%%%%", "%%")
 end
 
 function parse_filename_by_index(index)
@@ -256,14 +272,14 @@ function draw_playlist()
 	local one_based_cursor = cursor + 1
 	table.insert(visible_indices, one_based_cursor)
 
-	local offset = 1;
-	local visible_indices_length = 1;
+	local offset = 1
+	local visible_indices_length = 1
 	while visible_indices_length < settings.showamount and visible_indices_length < plen do
 		-- add entry for offset steps below the cursor
 		local below = one_based_cursor + offset
 		if below <= plen then
 			table.insert(visible_indices, below)
-			visible_indices_length = visible_indices_length + 1;
+			visible_indices_length = visible_indices_length + 1
 		end
 
 		-- add entry for offset steps above the cursor
@@ -271,7 +287,7 @@ function draw_playlist()
 		local above = one_based_cursor - offset
 		if above >= 1 and visible_indices_length < settings.showamount and visible_indices_length < plen then
 			table.insert(visible_indices, 1, above)
-			visible_indices_length = visible_indices_length + 1;
+			visible_indices_length = visible_indices_length + 1
 		end
 
 		offset = offset + 1
@@ -305,7 +321,9 @@ end
 
 function playlist_show(duration)
 	refresh_globals()
-	if plen == 0 then return end
+	if plen == 0 then
+		return
+	end
 	if not playlist_visible and settings.reset_cursor_on_open then
 		resetcursor()
 	end
@@ -324,7 +342,9 @@ end
 
 function showplaylist_non_interactive(duration)
 	refresh_globals()
-	if plen == 0 then return end
+	if plen == 0 then
+		return
+	end
 	if not playlist_visible and settings.reset_cursor_on_open then
 		resetcursor()
 	end
@@ -340,17 +360,19 @@ end
 
 function selectfile()
 	refresh_globals()
-	if plen == 0 then return end
+	if plen == 0 then
+		return
+	end
 	if not selection then
-		selection=cursor
+		selection = cursor
 	else
-		selection=nil
+		selection = nil
 	end
 	playlist_show()
 end
 
 function unselectfile()
-	selection=nil
+	selection = nil
 	playlist_show()
 end
 
@@ -361,11 +383,17 @@ end
 
 function removefile()
 	refresh_globals()
-	if plen == 0 then return end
+	if plen == 0 then
+		return
+	end
 	selection = nil
-	if cursor==pos then mp.command("script-message unseenplaylist mark true \"playlist_osd avoid conflict when removing file\"") end
+	if cursor == pos then
+		mp.command('script-message unseenplaylist mark true "playlist_osd avoid conflict when removing file"')
+	end
 	mp.commandv("playlist-remove", cursor)
-	if cursor==plen-1 then cursor = cursor - 1 end
+	if cursor == plen - 1 then
+		cursor = cursor - 1
+	end
 	if plen == 1 then
 		remove_keybinds()
 	else
@@ -375,25 +403,37 @@ end
 
 function moveup()
 	refresh_globals()
-	if plen == 0 then return end
-	if cursor~=0 then
-		if selection then mp.commandv("playlist-move", cursor,cursor-1) end
-		cursor = cursor-1
+	if plen == 0 then
+		return
+	end
+	if cursor ~= 0 then
+		if selection then
+			mp.commandv("playlist-move", cursor, cursor - 1)
+		end
+		cursor = cursor - 1
 	elseif settings.loop_cursor then
-		if selection then mp.commandv("playlist-move", cursor,plen) end
-		cursor = plen-1
+		if selection then
+			mp.commandv("playlist-move", cursor, plen)
+		end
+		cursor = plen - 1
 	end
 	playlist_show()
 end
 
 function movedown()
 	refresh_globals()
-	if plen == 0 then return end
-	if cursor ~= plen-1 then
-		if selection then mp.commandv("playlist-move", cursor,cursor+2) end
+	if plen == 0 then
+		return
+	end
+	if cursor ~= plen - 1 then
+		if selection then
+			mp.commandv("playlist-move", cursor, cursor + 2)
+		end
 		cursor = cursor + 1
 	elseif settings.loop_cursor then
-		if selection then mp.commandv("playlist-move", cursor,0) end
+		if selection then
+			mp.commandv("playlist-move", cursor, 0)
+		end
 		cursor = 0
 	end
 	playlist_show()
@@ -401,39 +441,59 @@ end
 
 function movepageup()
 	refresh_globals()
-	if plen == 0 or cursor == 0 then return end
+	if plen == 0 or cursor == 0 then
+		return
+	end
 	local prev_cursor = cursor
 	cursor = cursor - settings.showamount
-	if cursor < 0 then cursor = 0 end
-	if selection then mp.commandv("playlist-move", prev_cursor, cursor) end
+	if cursor < 0 then
+		cursor = 0
+	end
+	if selection then
+		mp.commandv("playlist-move", prev_cursor, cursor)
+	end
 	playlist_show()
 end
 
 function movepagedown()
 	refresh_globals()
-	if plen == 0 or cursor == plen-1 then return end
+	if plen == 0 or cursor == plen - 1 then
+		return
+	end
 	local prev_cursor = cursor
 	cursor = cursor + settings.showamount
-	if cursor >= plen then cursor = plen-1 end
-	if selection then mp.commandv("playlist-move", prev_cursor, cursor+1) end
+	if cursor >= plen then
+		cursor = plen - 1
+	end
+	if selection then
+		mp.commandv("playlist-move", prev_cursor, cursor + 1)
+	end
 	playlist_show()
 end
 
 function movebegin()
 	refresh_globals()
-	if plen == 0 or cursor == 0 then return end
+	if plen == 0 or cursor == 0 then
+		return
+	end
 	local prev_cursor = cursor
 	cursor = 0
-	if selection then mp.commandv("playlist-move", prev_cursor, cursor) end
+	if selection then
+		mp.commandv("playlist-move", prev_cursor, cursor)
+	end
 	playlist_show()
 end
 
 function moveend()
 	refresh_globals()
-	if plen == 0 or cursor == plen-1 then return end
+	if plen == 0 or cursor == plen - 1 then
+		return
+	end
 	local prev_cursor = cursor
-	cursor = plen-1
-	if selection then mp.commandv("playlist-move", prev_cursor, cursor+1) end
+	cursor = plen - 1
+	if selection then
+		mp.commandv("playlist-move", prev_cursor, cursor + 1)
+	end
 	playlist_show()
 end
 
@@ -442,7 +502,9 @@ function playlist_next()
 	if settings.close_playlist_on_playfile then
 		remove_keybinds()
 	end
-	if playlist_visible then playlist_show() end
+	if playlist_visible then
+		playlist_show()
+	end
 end
 
 function playlist_prev()
@@ -450,16 +512,20 @@ function playlist_prev()
 	if settings.close_playlist_on_playfile then
 		remove_keybinds()
 	end
-	if playlist_visible then playlist_show() end
+	if playlist_visible then
+		playlist_show()
+	end
 end
 
 function playlist_random()
 	refresh_globals()
-	if plen < 2 then return end
+	if plen < 2 then
+		return
+	end
 	math.randomseed(os.time())
 	local random = pos
 	while random == pos do
-		random = math.random(0, plen-1)
+		random = math.random(0, plen - 1)
 	end
 	mp.set_property("playlist-pos", random)
 	if settings.close_playlist_on_playfile then
@@ -469,13 +535,15 @@ end
 
 function playfile()
 	refresh_globals()
-	if plen == 0 then return end
+	if plen == 0 then
+		return
+	end
 	selection = nil
 	local is_idle = mp.get_property_native("idle-active")
 	if cursor ~= pos or is_idle then
 		mp.set_property("playlist-pos", cursor)
 	else
-		if cursor~=plen-1 then
+		if cursor ~= plen - 1 then
 			cursor = cursor + 1
 		end
 		mp.commandv("playlist-next", "weak")
@@ -483,7 +551,9 @@ function playfile()
 	if settings.close_playlist_on_playfile then
 		remove_keybinds()
 	end
-	if playlist_visible then playlist_show() end
+	if playlist_visible then
+		playlist_show()
+	end
 end
 
 function bind_keys(keys, name, func, opts)
@@ -589,16 +659,29 @@ function handlemessage(msg, value, value2)
 		end
 	end
 	if msg == "show" and value == "filename" and strippedname and value2 then
-		mp.commandv("show-text", strippedname, tonumber(value2)*1000 ) ; return
+		mp.commandv("show-text", strippedname, tonumber(value2) * 1000)
+		return
 	end
 	if msg == "show" and value == "filename" and strippedname then
-		mp.commandv("show-text", strippedname ) ; return
+		mp.commandv("show-text", strippedname)
+		return
 	end
 
-	if msg == "next" then playlist_next() ; return end
-	if msg == "prev" then playlist_prev() ; return end
-	if msg == "random" then playlist_random() ; return end
-	if msg == "close" then remove_keybinds() end
+	if msg == "next" then
+		playlist_next()
+		return
+	end
+	if msg == "prev" then
+		playlist_prev()
+		return
+	end
+	if msg == "random" then
+		playlist_random()
+		return
+	end
+	if msg == "close" then
+		remove_keybinds()
+	end
 end
 
 mp.register_script_message("playlist_osd", handlemessage)

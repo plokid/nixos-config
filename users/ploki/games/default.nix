@@ -1,4 +1,4 @@
 [
-    ./hmcl
-    ./lutris
+  ./hmcl
+  ./lutris
 ]

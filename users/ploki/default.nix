@@ -38,10 +38,10 @@
       wine
       winetricks
     ])
-  ++ (with pkgs.nur.repos; [
-    linyinfeng.wemeet
-    rewine.ttf-wps-fonts
-    xddxdd.qqmusic
-    xddxdd.bilibili
-  ]);
+    ++ (with pkgs.nur.repos; [
+      linyinfeng.wemeet
+      rewine.ttf-wps-fonts
+      xddxdd.qqmusic
+      xddxdd.bilibili
+    ]);
 }

@@ -6,8 +6,7 @@ name: flypy_phrase
 version: 2023-09-12
 sort: by_weight
 # use_preset_vocabulary: true  # 導入八股文字頻
-...
-
+---
 上市公司	uhuigssi	1873713
 有关部门	yzgrbumf	1346085
 门户网站	mfhuwhvj	709334

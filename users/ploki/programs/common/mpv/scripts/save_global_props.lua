@@ -17,10 +17,10 @@ local options = require("mp.options")
 local utils = require("mp.utils")
 
 local opt = {
-	save_mode = 1,                     -- <0|1|2>
-	props     = "volume,mute",
+	save_mode = 1, -- <0|1|2>
+	props = "volume,mute",
 	dup_block = false,
-	cache_dir = "~~/"
+	cache_dir = "~~/",
 }
 options.read_options(opt)
 
@@ -62,7 +62,7 @@ if dup_opts and opt.dup_block then
 end
 
 local cleaned = false
-local data_file_path = (mp.command_native({"expand-path", opt.cache_dir .. "saved-props.json"}))
+local data_file_path = (mp.command_native({ "expand-path", opt.cache_dir .. "saved-props.json" }))
 
 local function read_data_file()
 	local json_file = io.open(data_file_path, "a+")
