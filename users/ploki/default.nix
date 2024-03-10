@@ -10,10 +10,10 @@
       ./virtualisation/home.nix
       ./scripts
       ./fcitx5
+      ./shell
     ] ++ (import ./editors)
     ++ (import ./programs/common)
     ++ (import ./games)
-    ++ (import ./shell)
     ++ (import ./devlop);
 
   home = {
