@@ -3,6 +3,7 @@
 {
   programs.firefox = {
     enable = true;
+    nativeMessagingHosts = [ pkgs.plasma5Packages.plasma-browser-integration ];
     package = pkgs.wrapFirefox pkgs.firefox-esr-unwrapped {
       # package = pkgs.wrapFirefox pkgs.firefox-esr-unwrapped {
       # forceWayland = true;
