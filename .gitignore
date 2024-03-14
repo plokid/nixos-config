@@ -7,4 +7,4 @@ blog/.gitmodules
 blog.bak
 !.gitkeep
 .nixd.nix 
-.direnv
+.direnv/
