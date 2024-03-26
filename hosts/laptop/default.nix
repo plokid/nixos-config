@@ -10,12 +10,9 @@
     ++ (import ./virtualisation)
     ++ (import ./programs)
     ++ [
-      ./persistence.nix
       ./fonts
       ./hardware-configuration.nix
       ./desktop/wayland
-      # ./fcitx5
-      #  ./x11
     ];
 
   sops.defaultSopsFile = ../../../secrets/secrets.yaml;

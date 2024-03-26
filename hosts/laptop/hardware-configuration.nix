@@ -16,13 +16,6 @@
 
   fileSystems."/" =
     {
-      device = "none";
-      fsType = "tmpfs";
-      options = [ "defaults" "size=15G" "mode=755" ];
-    };
-
-  fileSystems."/nix" =
-    {
       device = "/dev/disk/by-uuid/604a0740-5053-4f6e-8036-793f61e0a2c3";
       fsType = "btrfs";
     };
@@ -41,6 +34,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  networking.networkmanager.wifi.macAddress = "stable";
   # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

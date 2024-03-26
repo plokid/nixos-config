@@ -2,7 +2,6 @@
 , self
 , nixpkgs
 , inputs
-, user
 , ...
 }:
 let
@@ -12,10 +11,10 @@ let
   };
 
   lib = nixpkgs.lib;
+  user = "ploki";
 in
 {
   laptop = lib.nixosSystem {
-    # Laptop profile
     inherit system;
     specialArgs = { inherit inputs user; };
     modules =
@@ -27,59 +26,9 @@ in
       ]
       ++ [
         inputs.impermanence.nixosModules.impermanence
-        # inputs.impermanence.nixosModules.home-manager.impermanence
         inputs.nur.nixosModules.nur
         inputs.hyprland.nixosModules.default
         inputs.sops-nix.nixosModules.sops
-        inputs.disko.nixosModules.disko
-        #inputs.lanzaboote.nixosModules.lanzaboote
-        inputs.home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = { inherit user; };
-            users.${user} = {
-              imports =
-                [
-                  ../users/ploki
-                ]
-                ++ [
-                  inputs.hyprland.homeManagerModules.default
-                  # inputs.impermanence.nixosModules.home-manager.impermanence
-                ];
-            };
-          };
-          nixpkgs = {
-            overlays =
-              [
-                self.overlays.default
-                inputs.neovim-nightly-overlay.overlay
-                inputs.rust-overlay.overlays.default
-                inputs.picom.overlays.default
-                inputs.nil.overlays.default
-                inputs.nixd.overlays.default
-                inputs.nur.overlay
-                # (import inputs.emacs-overlay)
-              ]
-              ++ (import ../overlays);
-          };
-        }
-      ];
-  };
-  laptop-minimal = lib.nixosSystem {
-    # Laptop-minimal profile
-    inherit system;
-    specialArgs = { inherit inputs user; };
-    modules =
-      [
-        ./laptop_minimal
-      ]
-      ++ [
-        ./system.nix
-      ]
-      ++ [
-        inputs.impermanence.nixosModules.impermanence
         inputs.disko.nixosModules.disko
       ];
   };
