@@ -43,10 +43,7 @@
             programs.prettier.enable = true;
             programs.taplo.enable = true;
             programs.stylua.enable = true;
-            programs.beautysh = {
-              enable = true;
-              indent_size = 4;
-            };
+            programs.shfmt.enable = true;
           };
           mission-control.scripts = {
             Install = {

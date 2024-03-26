@@ -23,7 +23,7 @@ SELECT="#343a46"
 ACCENT="#3B4252"
 
 # overwrite colors file
-cat > $dir/colors.rasi <<- EOF
+cat >$dir/colors.rasi <<-EOF
 	/* colors */
 
 	* {
@@ -36,4 +36,3 @@ cat > $dir/colors.rasi <<- EOF
 EOF
 
 rofi -no-lazy-grab -show drun -modi drun -theme $dir/"$theme"
-
