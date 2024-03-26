@@ -25,11 +25,8 @@ in
         ./system.nix
       ]
       ++ [
-        inputs.impermanence.nixosModules.impermanence
         inputs.nur.nixosModules.nur
         inputs.hyprland.nixosModules.default
-        inputs.sops-nix.nixosModules.sops
-        inputs.disko.nixosModules.disko
       ];
   };
 }

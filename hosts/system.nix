@@ -24,7 +24,6 @@
 
   i18n.defaultLocale = "zh_CN.UTF-8";
 
-  # security.rtkit.enable = true;
   networking.firewall.enable = false;
   environment = {
     binsh = "${pkgs.dash}/bin/dash";
@@ -37,7 +36,6 @@
       gcc
       clang
       cargo
-      zig
       p7zip
       atool
       unzip
@@ -54,7 +52,6 @@
       zip
       rar
       frp
-      sops
       efibootmgr
       gnumake
       direnv

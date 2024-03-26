@@ -15,7 +15,6 @@
       ./desktop/wayland
     ];
 
-  sops.defaultSopsFile = ../../../secrets/secrets.yaml;
   users.mutableUsers = false;
   users.users.root = {
     initialHashedPassword = "$6$WOHLNBh8OsXbdI06$/SN8FhpqLKqtpvIhlbEPi9dLH8e83Sm0.ToA1.GJHUVRlLtGQC82.zETE/tQB22V5Nep0BAxGlvnvFmX7MeA.1";
@@ -26,28 +25,10 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "libvirtd" "video" "audio" ];
-    # packages =
-    # (with pkgs; [
-    # tdesktop
-    # qq
-    # feishu
-    # thunderbird
-    # blender
-    # dbeaver
-    # aichat
-    # zotero
-    # wpsoffice-cn
-    # microsoft-edge
-    # hmcl
-    # ])
-    # (with config.nur.repos; [
-    # linyinfeng.wemeet
-    # ]);
   };
   boot = {
     supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxPackages_zen;
-    #bootspec.enable = true;
     loader = {
       systemd-boot = {
         #enable = lib.mkForce false; #lanzaboote
@@ -60,14 +41,9 @@
       };
       timeout = 3;
     };
-    #lanzaboote = {
-    #  enable = true;
-    #  pkiBundle = "/etc/secureboot";
-    #};
     kernelParams = [
       "quiet"
       "splash"
-      # "nvidia-drm.modeset=1"
     ];
     consoleLogLevel = 0;
     initrd.verbose = false;
@@ -75,7 +51,6 @@
 
   environment.systemPackages = with pkgs; [
     libnotify
-    cinnamon.nemo
     polkit_gnome
     networkmanagerapplet
     alsa-lib
@@ -114,22 +89,6 @@
       jack.enable = true;
     };
   };
-
-  # systemd = {
-  #   user.services.polkit-gnome-authentication-agent-1 = {
-  #     description = "polkit-gnome-authentication-agent-1";
-  #     wantedBy = [ "graphical-session.target" ];
-  #     wants = [ "graphical-session.target" ];
-  #     after = [ "graphical-session.target" ];
-  #     serviceConfig = {
-  #       Type = "simple";
-  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  #       Restart = "on-failure";
-  #       RestartSec = 1;
-  #       TimeoutStopSec = 10;
-  #     };
-  #   };
-  # };
 
   security.polkit.enable = true;
   security.sudo = {
