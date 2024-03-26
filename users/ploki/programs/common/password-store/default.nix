@@ -8,7 +8,6 @@
       exts.pass-tomb
       exts.pass-import
       exts.pass-update
-      exts.pass-audit
     ]);
   };
 
