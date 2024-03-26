@@ -15,4 +15,5 @@
   ./mpv
   ./lazygit
   ./direnv
+  ./chromium
 ]
