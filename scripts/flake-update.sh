@@ -28,8 +28,7 @@ flake_input=(
     joshuto
     nixd
 )
-for item in "${flake_input[@]}"
-do
+for item in "${flake_input[@]}"; do
     echo -e "\033[1;34m${item}: \033[0m"
     nix flake lock --update-input "$item"
 done

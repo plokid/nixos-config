@@ -27,28 +27,32 @@ while true; do
 
     case $choice in
         1)
-            partition_layout="$common_dir/single-device.nix";
-            ask;
-            break ;;
+            partition_layout="$common_dir/single-device.nix"
+            ask
+            break
+            ;;
         2)
-            partition_layout="$common_dir/single-device-luks.nix";
-            ask;
+            partition_layout="$common_dir/single-device-luks.nix"
+            ask
             #to set luks password
             read -p $'\e[1;31mEnter LUKS password (important!): \e[0m' -r luks_pass
-            echo -n "$luks_pass" > /tmp/secret.key
+            echo -n "$luks_pass" >/tmp/secret.key
 
-            break ;;
+            break
+            ;;
         3)
-            partition_layout="$common_dir/multi-device.nix";
-            ask;
-            break ;;
+            partition_layout="$common_dir/multi-device.nix"
+            ask
+            break
+            ;;
         4)
-            partition_layout="$common_dir/multi-device-luks.nix";
-            ask;
+            partition_layout="$common_dir/multi-device-luks.nix"
+            ask
             #to set luks password
             read -p $'\e[1;31mEnter LUKS password (important!): \e[0m' -r luks_pass
-            echo -n "$luks_pass" > /tmp/secret.key
-            break ;;
+            echo -n "$luks_pass" >/tmp/secret.key
+            break
+            ;;
         *)
             echo "Invalid choice, please try again."
             ;;
