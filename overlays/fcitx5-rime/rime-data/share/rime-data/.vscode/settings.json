@@ -1,7 +1,0 @@
-{
-    "editor.fontFamily": "'JetBrainsMono Nerd Font Mono'",
-    "yaml.schemas": 
-        {
-            "./rime-yaml-schema.json": "*.yaml"
-        }
-}
