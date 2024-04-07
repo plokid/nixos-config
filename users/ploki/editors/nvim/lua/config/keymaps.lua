@@ -4,7 +4,7 @@
 
 local Util = require("lazyvim.util")
 local lazyterm = function()
-	Util.terminal(nil, { cwd = Util.root() })
+  Util.terminal(nil, { cwd = Util.root() })
 end
 vim.keymap.set("n", "<C-`>", lazyterm, { desc = "Terminal (root dir)" })
 vim.keymap.set("t", "<C-`>", "<cmd>close<cr>", { desc = "Hide Terminal" })

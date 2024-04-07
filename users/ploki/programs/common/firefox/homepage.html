@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -373,13 +373,13 @@
         "object" == typeof exports && "undefined" != typeof module
           ? h(exports)
           : "function" == typeof define && define.amd
-          ? define(["exports"], h)
-          : h(
-              ((a =
-                "undefined" != typeof globalThis
-                  ? globalThis
-                  : a || self).lucide = {})
-            );
+            ? define(["exports"], h)
+            : h(
+                ((a =
+                  "undefined" != typeof globalThis
+                    ? globalThis
+                    : a || self).lucide = {}),
+              );
       })(this, function (a) {
         "use strict";
 
@@ -416,12 +416,12 @@
             return "string" == typeof a
               ? a
               : a && a.class
-              ? a.class && "string" == typeof a.class
-                ? a.class.split(" ")
-                : a.class && Array.isArray(a.class)
-                ? a.class
-                : ""
-              : "";
+                ? a.class && "string" == typeof a.class
+                  ? a.class.split(" ")
+                  : a.class && Array.isArray(a.class)
+                    ? a.class
+                    : ""
+                : "";
           },
           p = function (a, p) {
             var i = p.nameAttr,
@@ -437,7 +437,7 @@
             if (!c)
               return console.warn(
                 a.outerHTML +
-                  " icon name was not found in the provided icons object."
+                  " icon name was not found in the provided icons object.",
               );
             var v = (function (a) {
                 return Array.from(a.attributes).reduce(function (a, h) {
@@ -454,7 +454,7 @@
                   "icon-name": r,
                 },
                 l,
-                v
+                v,
               ),
               x = ["lucide", "lucide-" + r, v, l]
                 .flatMap(e)
@@ -28769,11 +28769,11 @@
               r = void 0 === l ? {} : l;
             if (!Object.values(e).length)
               throw new Error(
-                "Please provide an icons object.\nIf you want to use all the icons you can import it like:\n `import { createIcons, icons } from 'lucide';\nlucide.createIcons({icons});`"
+                "Please provide an icons object.\nIf you want to use all the icons you can import it like:\n `import { createIcons, icons } from 'lucide';\nlucide.createIcons({icons});`",
               );
             if ("undefined" == typeof document)
               throw new Error(
-                "`createIcons()` only works in a browser environment."
+                "`createIcons()` only works in a browser environment.",
               );
             var c = document.querySelectorAll("[" + d + "]");
             Array.from(c).forEach(function (a) {
@@ -29092,7 +29092,7 @@
             linksBlockLeft.insertAdjacentHTML(position, firstButtonsContainer);
             linksBlockRight.insertAdjacentHTML(
               position,
-              secondButtonsContainer
+              secondButtonsContainer,
             );
             linksBlock.classList.add("removeGap");
             break;
