@@ -21,9 +21,6 @@
     "mpv/script-opts.conf".source = ./script-opts.conf;
     "mpv/script-opts".source = ./script-opts;
     # "mpv/scripts".source = ./scripts;
-    "mpv/vs".source = ./vs;
-    "mpv/shaders".source = ./shaders;
     "mpv/fonts".source = ./fonts;
-    "mpv/luts".source = ./luts;
   };
 }
