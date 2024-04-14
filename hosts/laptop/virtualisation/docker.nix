@@ -2,7 +2,10 @@
 
 {
   virtualisation = {
-    docker.enable = true;
+    docker = {
+      enable = true;
+      storageDriver = "btrfs";
+    };
   };
 
   users.groups.docker.members = [ "ploki" ];
