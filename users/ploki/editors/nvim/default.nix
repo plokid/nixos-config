@@ -11,7 +11,7 @@
     withPython3 = true;
     defaultEditor = true;
     plugins = with pkgs.vimPlugins; [
-      # LazyVim
+      LazyVim
       better-escape-nvim
       clangd_extensions-nvim
       cmp-buffer
@@ -57,7 +57,8 @@
       persistence-nvim
       plenary-nvim
       project-nvim
-      rust-tools-nvim
+      # rust-tools-nvim
+      rustaceanvim
       sqlite-lua
       telescope-fzf-native-nvim
       telescope-nvim

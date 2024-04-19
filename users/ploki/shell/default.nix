@@ -113,48 +113,47 @@ in
     };
   };
 
-  home.shellAliases = with lib;
-    with pkgs; {
-      ytmp3 = ''
-        yt-dlp -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"'';
-      cat = "bat --style=plain";
-      uuid = "cat /proc/sys/kernel/random/uuid";
-      grep = "riprep";
-      wget = "wget --hsts-file=\"${config.xdg.dataHome}/wget-hsts\"";
-      fzf = "skim";
-      untar = "tar -xvf";
-      untargz = "tar -xzf";
-      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-      du = "du-ust";
-      ps = "pros";
-      m = "mkdir -p";
-      fcd = "cd $(find -type d | fzf)";
-      sc = "sudo systemctl";
-      scu = "systemctl --user ";
-      ls = "eza ${eza_params}";
-      l = "eza --git-ignore ${eza_params}";
-      ll = "eza --all --header --long ${eza_params}";
-      llm = "eza --all --header --long --sort=modified ${eza_params}";
-      la = "eza -lbhHigUmuSa";
-      lx = "eza -lbhHigUmuSa@";
-      lt = "eza --tree ${eza_params}";
-      tree = "eza --tree ${eza_params}";
-      kys = "shutdown now";
-      gpl = "curl https://www.gnu.org/licenses/gpl-3.0.txt -o LICENSE";
-      agpl = "curl https://www.gnu.org/licenses/agpl-3.0.txt -o LICENSE";
-      webcam = "ffplay /dev/video0";
-      g = "git";
-      n = "nix";
-      mnt = "udisksctl mount -b";
-      umnt = "udisksctl unmount -b";
-      burn = "pkill -9";
-      diff = "diff --color=auto";
-      ".." = "cd ..";
-      "..." = "cd ../../";
-      "...." = "cd ../../../";
-      "....." = "cd ../../../../";
-      "......" = "cd ../../../../../";
-    };
+  home.shellAliases = {
+    ytmp3 = ''
+      yt-dlp -x --continue --add-metadata --embed-thumbnail --audio-format mp3 --audio-quality 0 --metadata-from-title="%(artist)s - %(title)s" --prefer-ffmpeg -o "%(title)s.%(ext)s"'';
+    cat = "bat --style=plain";
+    uuid = "cat /proc/sys/kernel/random/uuid";
+    grep = "riprep";
+    wget = "wget --hsts-file=\"${config.xdg.dataHome}/wget-hsts\"";
+    fzf = "skim";
+    untar = "tar -xvf";
+    untargz = "tar -xzf";
+    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    du = "dust";
+    ps = "pros";
+    m = "mkdir -p";
+    fcd = "cd $(find -type d | fzf)";
+    sc = "sudo systemctl";
+    scu = "systemctl --user ";
+    ls = "eza ${eza_params}";
+    l = "eza --git-ignore ${eza_params}";
+    ll = "eza --all --header --long ${eza_params}";
+    llm = "eza --all --header --long --sort=modified ${eza_params}";
+    la = "eza -lbhHigUmuSa";
+    lx = "eza -lbhHigUmuSa@";
+    lt = "eza --tree ${eza_params}";
+    tree = "eza --tree ${eza_params}";
+    kys = "shutdown now";
+    gpl = "curl https://www.gnu.org/licenses/gpl-3.0.txt -o LICENSE";
+    agpl = "curl https://www.gnu.org/licenses/agpl-3.0.txt -o LICENSE";
+    webcam = "ffplay /dev/video0";
+    g = "git";
+    n = "nix";
+    mnt = "udisksctl mount -b";
+    umnt = "udisksctl unmount -b";
+    burn = "pkill -9";
+    diff = "diff --color=auto";
+    ".." = "cd ..";
+    "..." = "cd ../../";
+    "...." = "cd ../../../";
+    "....." = "cd ../../../../";
+    "......" = "cd ../../../../../";
+  };
 
   home.packages = with pkgs; [
     procs
