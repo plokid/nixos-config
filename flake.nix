@@ -139,11 +139,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    impermanence.url = "github:nix-community/impermanence";
+    # impermanence.url = "github:nix-community/impermanence";
     nur.url = "github:nix-community/NUR";
-    hypr-contrib.url = "github:hyprwm/contrib";
+    # hypr-contrib.url = "github:hyprwm/contrib";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    sops-nix.url = "github:Mic92/sops-nix";
+    # sops-nix.url = "github:Mic92/sops-nix";
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -8,6 +8,7 @@
   ./yt-dlp
   ./zathura
   ./kitty
+  ./wezterm
   ./joshuto
   ./password-store
   ./git
