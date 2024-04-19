@@ -44,4 +44,7 @@
       xddxdd.qqmusic
       xddxdd.bilibili
     ]);
+
+  fonts.fontconfig.enable = true;
+  news.display = "silent";
 }
