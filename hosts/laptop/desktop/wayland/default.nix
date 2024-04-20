@@ -8,7 +8,7 @@
   imports = [
     # ../../../modules/desktop/sway
     # ../../../modules/desktop/hyprland
-    ../plasma5
+    ../plasma6
   ];
 
   environment.systemPackages = with pkgs; [

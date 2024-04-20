@@ -2,7 +2,7 @@
   services.xserver = {
     enable = true;
     # displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
+    desktopManager.plasma6.enable = true;
     xkb.layout = "us";
     libinput.enable = true;
   };
@@ -19,11 +19,6 @@
     partition-manager.enable = true;
     # 很多 gtk 软件需要这个 dconf 来保存设定
     dconf.enable = true;
-    # # 用 kleopatra 软件可能需要这个
-    # gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
   };
 
   environment.systemPackages = with pkgs;
