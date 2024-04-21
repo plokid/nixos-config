@@ -12,7 +12,8 @@
     ++ [
       ./fonts
       ./hardware-configuration.nix
-      ./desktop/wayland
+      ./desktop/plasma6
+      ./desktop/regreet
     ];
 
   users.mutableUsers = false;
