@@ -14,8 +14,8 @@
       { id = "fihnjjcciajhdojfnbdddfaoknhalnja"; } # I don't care about cookies
       { id = "cimiefiiaegbelhefglklhhakcgmhkai"; } # Plasma Integration
       { id = "bocbaocobfecmglnmeaeppambideimao"; } # Edge Translate
-      { id = "oicakdoenlelpjnkoljnaakdofplkgnd"; } # Tree Style Tab
-      { id = "mhloojimgilafopcmlcikiidgbbnelip"; } # iTab
+      #{ id = "oicakdoenlelpjnkoljnaakdofplkgnd"; } # Tree Style Tab
+      #{ id = "mhloojimgilafopcmlcikiidgbbnelip"; } # iTab
       { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # Dark Reader
     ];
   };
