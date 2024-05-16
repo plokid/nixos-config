@@ -93,7 +93,7 @@
       marksman # language server for markdown
       glow # markdown previewer
       fzf
-      vim-full
+      xxd
 
       ripgrep # fast search tool, required by AstroNvim's '<leader>fw'(<leader> is space key)
       fd
