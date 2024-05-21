@@ -1,6 +1,7 @@
 [
   ./firefox
   ./gpg
+  ./btop
   ./music
   ./neofetch
   ./obs-studio

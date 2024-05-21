@@ -35,8 +35,10 @@
       wpsoffice-cn
       microsoft-edge
       cabextract
-      wine
+      wineWowPackages.stable
       winetricks
+      wechat-uos
+      libreoffice
     ])
     ++ (with pkgs.nur.repos; [
       linyinfeng.wemeet
