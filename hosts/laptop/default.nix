@@ -13,7 +13,7 @@
       ./fonts
       ./hardware-configuration.nix
       ./desktop/plasma6
-      ./desktop/regreet
+      #./desktop/regreet
     ];
 
   users.mutableUsers = false;
@@ -73,7 +73,7 @@
   };
   console.useXkbConfig = true;
 
-  services.xserver.libinput = {
+  services.libinput = {
     enable = true;
     touchpad.naturalScrolling = true;
   };
