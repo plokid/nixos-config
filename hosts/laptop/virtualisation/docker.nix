@@ -5,6 +5,9 @@
     docker = {
       enable = true;
       storageDriver = "btrfs";
+      daemon.settings = {
+        "registry-mirrors" = [ "https://m6uqx7l9.mirror.aliyuncs.com" ];
+      };
     };
   };
 
